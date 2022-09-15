@@ -46,7 +46,7 @@ const Home = () => {
             <Link to="/projects" className="flat-button">
               Projects
             </Link>
-            <a href="https://docs.google.com/document/d/126-1WP5w6iesF9RNtXsMnw2kZP_920JG7zuh3_B3ndU/export?format=pdf" className="flat-button">
+            <a href="https://docs.google.com/document/d/1kSENnl5v8oIMJUlUTaXIhmf1FJ6ul2nY/export?format=pdf" className="flat-button">
               Resume
             </a>
           </ul>

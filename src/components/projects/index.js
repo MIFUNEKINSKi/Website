@@ -1,6 +1,6 @@
 import "./index.scss";
 import Loader from "react-loaders";
-import AuteurFLix from "../../assets/images/dispatch.gif"
+import AuteurFLix from "../../assets/images/auteurflix gif.gif"
 import NBAStatsDemo from "../../assets/images/nba-stats.gif"
 import CodeMarkDemo from "../../assets/images/code mark 1.gif"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
