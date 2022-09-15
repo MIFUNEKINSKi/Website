@@ -14,19 +14,11 @@ const Projects = () => {
         {
             img: AuteurFLix,
             name: "Dispatch",
-            description: <p>Dispatch is a full stack clone of the popular business messaging application, Slack. The application was built using <span className="technologies">React, Redux, Javascript, Ruby, Rails, and PostgreSQL. </span>
-                                    Using dispatch, users are able to create channels and group messages to communicate and collaborate effectively. Through the use of <span className="technologies">Rails Action Cable</span>, a websockets framework, users can send and receive messages in real time without the need to refresh their message feeds.</p>,
-            liveLink: "https://dispatch-client.herokuapp.com/#/",
-            githubLink: "https://github.com/joe-delaney/dispatch"
+            description: <p>AuteurFLix is a full stack clone of the popular media streaming service, NetFlix. The application was built using <span className="technologies">React, Redux, Javascript, Ruby, Rails, and PostgreSQL. </span>
+                                    Using AuteurFLix, users are able to create profiles, and playlists of their favorite Auteur films.</p>,
+            liveLink: "https://auteurflix.herokuapp.com/",
+            githubLink: "https://github.com/MIFUNEKINSKi/AuteurFlix"
         },
-        // {
-        //     img: NBAStatsDemo,
-        //     name: "NBA Statistics Dashboard",
-        //     description: <p>This application provides users with an interactive dashboard to analyze player comparisons and quickly create custom data visualizations. This project was developed using <span className="technologies">Javascript, HTML5, CSS3, and D3js</span>. Through the use of <span className="technologies">asynchronous/await functions</span> that utilize <span className="technologies">AJAX API</span> calls to fetch user
-        //      query results from a third party API, users can select any past or present NBA players and relevant statistics.</p>,
-        //     liveLink: "https://nba-stats-dashboard.herokuapp.com/",
-        //     githubLink: "https://github.com/joe-delaney/NBA-Stat-Dashboard"
-        // },
         {
             img: CodeMarkDemo,
             name: "CodeMark",

@@ -24,17 +24,17 @@ const Sidebar = () => (
         </nav>
         <ul>
             <li>
-                <a target="_blank" rel="noreferrer" href='https://www.linkedin.com/in/joseph-delaney-46985b76/'>
+                <a target="_blank" rel="noreferrer" href='https://www.linkedin.com/in/chris-moore-27438989/'>
                     <FontAwesomeIcon icon={faLinkedin} color="#4d4d4e"/>
                 </a>
             </li>
             <li>
-                <a target="_blank" rel="noreferrer" href='https://github.com/joe-delaney'>
+                <a target="_blank" rel="noreferrer" href='https://github.com/MIFUNEKINSKi/'>
                     <FontAwesomeIcon icon={faGithub} color="#4d4d4e"/>
                 </a>
             </li>
             <li>
-                <a target="_blank" rel="noreferrer" href='https://angel.co/u/joe-delaney-6'>
+                <a target="_blank" rel="noreferrer" href='https://angel.co/u/chris-moore-50'>
                     <FontAwesomeIcon icon={faAngellist} color="#4d4d4e"/>
                 </a>
             </li>

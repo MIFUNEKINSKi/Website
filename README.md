@@ -3,9 +3,9 @@ This site represents my personal portfolio and was built using React, Javascript
 
 ### Contact Info
 
-[joe-delaney.com](https://joe-delaney.com)
+[christophermoore.info](christophermoore.info)
 
-**[LinkedIn](https://www.linkedin.com/in/joseph-delaney-46985b76/)**
+**[LinkedIn](https://www.linkedin.com/in/chris-moore-27438989/)**
 
-Joseph.delaney546@gmail.com
+moorecash@gmail.com
 
