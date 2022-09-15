@@ -13,7 +13,7 @@ const Projects = () => {
     const projects = [
         {
             img: AuteurFLix,
-            name: "Dispatch",
+            name: "AuteurFlix",
             description: <p>AuteurFLix is a full stack clone of the popular media streaming service, NetFlix. The application was built using <span className="technologies">React, Redux, Javascript, Ruby, Rails, and PostgreSQL. </span>
                                     Using AuteurFLix, users are able to create profiles, and playlists of their favorite Auteur films.</p>,
             liveLink: "https://auteurflix.herokuapp.com/",
