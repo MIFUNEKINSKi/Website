@@ -36,7 +36,7 @@ const Home = () => {
               letterClass={letterClass}
               strArray={jobArray}
               idx={19}
-            />
+            /> 
           </h1>
           <h2>NEW YORK CITY, NEW YORK | (828) 442-2233 | MOOREXCHRISTOPHER@GMAIL.COM</h2>
           <ul className="home-links">
