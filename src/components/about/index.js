@@ -32,8 +32,8 @@ const About = () => {
                         HTML5, CSS3, D3</span> and <span className="technologies">SQL.</span> I love solving problems and am constantly looking for opportunities to learn more and enhance my skillset.    
                     </p>
                     <p>
-                        Outside of software development, I love traveling, trying new restaurants,
-                        playing basketball, and (unfortunately) rooting for NY sports teams!
+                        Outside of software development, I love traveling, trying new cuisines,
+                        Shakespeare, movies, and a good book.
                     </p>
                 </div>
 
