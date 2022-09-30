@@ -1,6 +1,6 @@
 import "./index.scss";
 import Loader from "react-loaders";
-import AuteurFLix from "../../assets/images/auteurflix gif.gif"
+import AuteurFLix from "../../assets/images/AuteurFlix1.gif"
 import CryptoCity from "../../assets/images/CryptoCity.gif"
 import CodeMarkDemo from "../../assets/images/code mark 1.gif"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -68,7 +68,7 @@ const Projects = () => {
                                 </div>
                             </div>
                             <div className="right">
-                                <img src={project.img}></img>
+                                <img src={project.img} alt='profile'></img>
                                     <div className="right-links">
                                         <a href={project.liveLink} className="flat-button">
                                             Live Site
