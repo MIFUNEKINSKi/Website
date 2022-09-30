@@ -1,7 +1,7 @@
 import "./index.scss";
 import Loader from "react-loaders";
 import AuteurFLix from "../../assets/images/auteurflix gif.gif"
-import NBAStatsDemo from "../../assets/images/nba-stats.gif"
+import CryptoCity from "../../assets/images/CryptoCity.gif"
 import CodeMarkDemo from "../../assets/images/code mark 1.gif"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faAngleRight, faAngleLeft} from "@fortawesome/free-solid-svg-icons";
@@ -25,6 +25,13 @@ const Projects = () => {
             description: <p>CodeMark is a tool that allows you to save, share, and discover code notes, or CodeMarks.CodeMarks can be methods, functions, algorithms, etc.in a variety of languages.Automatically, you’ll get links to relevant documentation, examples, and discussions related to keywords of your choice. <span className="technologies">React, Redux, Javascript, NodeJS, Express</span>, and <span className="technologies">MongoDB.</span>This application leverages the use of <span className="technologies">RESTful routes</span> to implement <span className="technologies">CRUD functionality</span> and allow users to dynamically interact with the application and with other users.</p>,
             liveLink: "https://code-mark.herokuapp.com/#/",
             githubLink: "https://github.com/jacobbenowitz/code-mark"
+        },
+          {
+            img: CryptoCity,
+            name: "Crypto City",
+              description: <p>This application provides an interactive Crypto dashboard to visualize all things crypto, find the latest news, and look at chart data to look at history of coins over time.</p>,
+              liveLink: "https://cryptocityapp.netlify.app/",
+              githubLink: "https://github.com/MIFUNEKINSKi/CryptoCity"
         }
     ]
 

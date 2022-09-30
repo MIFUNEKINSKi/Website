@@ -1,5 +1,4 @@
 import "./index.scss";
-import AnimatedLetters from "../animated_letters";
 import {useState, useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faJsSquare, faReact } from "@fortawesome/free-brands-svg-icons";
@@ -33,7 +32,7 @@ const About = () => {
                     </p>
                     <p>
                         Outside of software development, I love traveling, trying new cuisines,
-                        Shakespeare, movies, and a good book.
+                        Shakespeare, movies, and my beautiful girlfriend and dog!
                     </p>
                 </div>
 
