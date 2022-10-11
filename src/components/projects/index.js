@@ -19,7 +19,7 @@ const Projects = () => {
             liveLink: "https://auteurflix.herokuapp.com/",
             githubLink: "https://github.com/MIFUNEKINSKi/AuteurFlix"
         },
-        // 
+        // it's great being green
         {
             img: CodeMarkDemo,
             name: "CodeMark",
