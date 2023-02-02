@@ -12,15 +12,6 @@ const Projects = () => {
 
     const projects = [
         {
-            img: AuteurFLix,
-            name: "AuteurFlix",
-            description: <p>AuteurFLix is a full stack clone of the popular media streaming service, NetFlix. The application was built using <span className="technologies">React, Redux, Javascript, Ruby, Rails, and PostgreSQL. </span>
-                                    Using AuteurFLix, users are able to create profiles, and playlists of their favorite Auteur films.</p>,
-            liveLink: "https://auteurflix.herokuapp.com/",
-            githubLink: "https://github.com/MIFUNEKINSKi/AuteurFlix"
-        },
-        // it's great being green!!!
-        {
             img: CodeMarkDemo,
             name: "CodeMark",
             description: <p>CodeMark is a tool that allows you to save, share, and discover code notes, or CodeMarks.CodeMarks can be methods, functions, algorithms, etc.in a variety of languages.Automatically, you’ll get links to relevant documentation, examples, and discussions related to keywords of your choice. <span className="technologies">React, Redux, Javascript, NodeJS, Express</span>, and <span className="technologies">MongoDB.</span>This application leverages the use of <span className="technologies">RESTful routes</span> to implement <span className="technologies">CRUD functionality</span> and allow users to dynamically interact with the application and with other users.</p>,
@@ -33,6 +24,14 @@ const Projects = () => {
               description: <p>This application provides an interactive Crypto dashboard to visualize all things crypto, find the latest news, and look at chart data to look at history of coins over time.</p>,
               liveLink: "https://cryptocityapp.netlify.app/",
               githubLink: "https://github.com/MIFUNEKINSKi/CryptoCity"
+        },
+        {
+            img: AuteurFLix,
+            name: "AuteurFlix",
+            description: <p>AuteurFLix is a full stack clone of the popular media streaming service, NetFlix. The application was built using <span className="technologies">React, Redux, Javascript, Ruby, Rails, and PostgreSQL. </span>
+                Using AuteurFLix, users are able to create profiles, and playlists of their favorite Auteur films.</p>,
+            liveLink: "https://auteurflix.herokuapp.com/",
+            githubLink: "https://github.com/MIFUNEKINSKi/AuteurFlix"
         }
     ]
 
