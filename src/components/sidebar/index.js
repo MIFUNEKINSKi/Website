@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faHome, faUser, faRectangleList, faAngleRight} from "@fortawesome/free-solid-svg-icons";
+import {faHome, faUser, faRectangleList} from "@fortawesome/free-solid-svg-icons";
 import { faAngellist, faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import ProfilePhoto from "../../assets/images/headshot.jpg"
 
