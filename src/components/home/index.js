@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import React from 'react';
+
 import { Link } from 'react-router-dom'
 import AnimatedLetters from '../animated_letters'
 import './index.scss'
@@ -46,7 +48,7 @@ const Home = () => {
             <Link to="/projects" className="flat-button">
               Projects
             </Link>
-            <a href="https://docs.google.com/document/d/1kSENnl5v8oIMJUlUTaXIhmf1FJ6ul2nY/export?format=pdf" className="flat-button">
+            <a href="https://docs.google.com/document/d/1VRTWSy2ubS844_NkUjWealq2O_l68yRf/export?format=pdf" className="flat-button">
               Resume
             </a>
           </ul>

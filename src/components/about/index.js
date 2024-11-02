@@ -1,4 +1,6 @@
 import "./index.scss";
+import React from 'react';
+
 import {useState, useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faJsSquare, faReact } from "@fortawesome/free-brands-svg-icons";

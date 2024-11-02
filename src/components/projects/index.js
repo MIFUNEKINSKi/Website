@@ -1,4 +1,6 @@
 import "./index.scss";
+import React from 'react';
+
 import Loader from "react-loaders";
 import AuteurFLix from "../../assets/images/AuteurFlix1.gif"
 import CryptoCity from "../../assets/images/CryptoCity.gif"

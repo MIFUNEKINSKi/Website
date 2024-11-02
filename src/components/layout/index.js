@@ -1,4 +1,6 @@
 import "./index.scss";
+import React from 'react';
+
 import Sidebar from "../sidebar";
 import Home from '..//home';
 import About from '../about';
