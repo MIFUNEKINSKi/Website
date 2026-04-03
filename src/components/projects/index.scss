@@ -107,6 +107,25 @@
                 display: none;
             }
         }
+
+        &.no-image {
+            .left {
+                flex: 1;
+                max-width: 90%;
+            }
+        }
+    }
+}
+
+.tech-stack-label {
+    margin-top: 8px;
+    font-size: 13px !important;
+    color: #ccc !important;
+
+    .technologies {
+        font-size: 13px;
+        font-weight: 400;
+        text-decoration: none !important;
     }
 }
 
