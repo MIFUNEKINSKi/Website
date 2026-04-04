@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.48d37ec4.css",
+    "main.js": "/static/js/main.e24490de.js",
+    "static/js/488.15c117bb.chunk.js": "/static/js/488.15c117bb.chunk.js",
+    "static/media/AuteurFlix1.gif": "/static/media/AuteurFlix1.1c8be567b10ed8262e4e.gif",
+    "static/media/helvetica-neu.ttf": "/static/media/helvetica-neu.8a19678078a6b21c8057.ttf",
+    "static/media/headshot.jpg": "/static/media/headshot.5ea82e2cbbaa2323a9f5.jpg",
+    "static/media/LaBelleAurore.woff": "/static/media/LaBelleAurore.9c5433c64baa43d1d274.woff",
+    "static/media/LaBelleAurore.woff2": "/static/media/LaBelleAurore.a83c1c58fd7e43972e4a.woff2",
+    "static/media/CoolveticaRg-Regular.woff": "/static/media/CoolveticaRg-Regular.8307bfa187bccdc55f4d.woff",
+    "static/media/CoolveticaRg-Regular.woff2": "/static/media/CoolveticaRg-Regular.7d1f3b1dd46ad6557a17.woff2",
+    "index.html": "/index.html",
+    "main.48d37ec4.css.map": "/static/css/main.48d37ec4.css.map",
+    "main.e24490de.js.map": "/static/js/main.e24490de.js.map",
+    "488.15c117bb.chunk.js.map": "/static/js/488.15c117bb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.48d37ec4.css",
+    "static/js/main.e24490de.js"
+  ]
+}
