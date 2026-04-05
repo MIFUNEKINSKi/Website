@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "website",
+      "runtimeExecutable": "/Users/chrismoore/.nvm/versions/node/v20.2.0/bin/npx",
+      "runtimeArgs": ["react-scripts", "start"],
+      "port": 3000
+    }
+  ]
+}

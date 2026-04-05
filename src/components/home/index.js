@@ -48,9 +48,6 @@ const Home = () => {
             <Link to="/projects" className="flat-button">
               Projects
             </Link>
-            <a href="https://docs.google.com/document/d/1VRTWSy2ubS844_NkUjWealq2O_l68yRf/export?format=pdf" className="flat-button">
-              Resume
-            </a>
           </ul>
         </div>
       </div>

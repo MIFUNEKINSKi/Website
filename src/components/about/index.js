@@ -1,43 +1,66 @@
 import "./index.scss";
 import React from 'react';
-
-import { useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPython, faAws, faDocker } from "@fortawesome/free-brands-svg-icons";
 import { faDatabase, faSatelliteDish, faChartLine } from "@fortawesome/free-solid-svg-icons";
 import Loader from "react-loaders";
 
 const About = () => {
-
-    useEffect(() => {
-        setTimeout(() => {
-        }, 3000)
-    }, [])
+    const skillCategories = [
+        {
+            title: "Languages & Frameworks",
+            skills: ["Python", "SQL", "PySpark", "JavaScript", "SAS", "React"]
+        },
+        {
+            title: "Cloud & Infrastructure",
+            skills: ["AWS (S3, Glue, Athena, ECS, Step Functions, Lambda)", "Terraform", "Docker", "GitHub Actions"]
+        },
+        {
+            title: "Data Engineering",
+            skills: ["ETL/ELT Pipelines", "dbt", "Web Scraping", "REST APIs", "JSONL / Parquet", "Data Quality"]
+        },
+        {
+            title: "Specialized",
+            skills: ["Google Earth Engine", "Geospatial (GeoPandas, Shapely)", "Satellite Imagery (Sentinel-1/2)", "OMOP CDM / HL7 FHIR"]
+        },
+    ];
 
     return (
         <div>
             <div className="container about-page">
                 <div className="text-zone">
-                    <h1>
-                        About me
-                    </h1>
+                    <h1>About me</h1>
                     <p>
-                        I am a data engineer with a background in statistical programming
-                        and healthcare analytics. I build data pipelines that ingest from
-                        multiple sources, transform and score data, and deliver actionable
-                        insights through automated reports and dashboards.
-                    </p>
-                    <p align="LEFT">
-                        I have experience with <span className="technologies">Python, SQL,
-                        AWS (Glue, Athena, S3, Lambda, Step Functions), dbt, Google Earth Engine,
-                        PostgreSQL, Docker</span>, and <span className="technologies">React.</span> I
-                        specialize in ETL pipelines, geospatial data processing, satellite imagery
-                        analysis, and data quality frameworks.
+                        I build data pipelines that turn messy, multi-source data into
+                        actionable intelligence. My background spans healthcare analytics,
+                        geospatial data processing, and satellite imagery — I'm drawn to
+                        problems where the data is complex and the stakes are real.
                     </p>
                     <p>
-                        Outside of engineering, I love traveling, trying new cuisines,
-                        Shakespeare, movies, and my beautiful girlfriend and dog!
+                        Day to day, I work with <span className="technologies">Python, SQL,
+                        AWS, Terraform, Docker, and dbt</span>. I've built production pipelines
+                        that fuse satellite imagery with web-scraped market data, transform
+                        clinical records between healthcare standards, and score investment
+                        opportunities across 65 regions in real time.
                     </p>
+                    <p>
+                        I care about reliability — caching layers, retry logic, data validation,
+                        and clear alerting. Good data engineering means the pipeline runs at 3 AM
+                        on Sunday and you don't get paged.
+                    </p>
+
+                    <div className="skills-grid">
+                        {skillCategories.map((cat, idx) => (
+                            <div className="skill-category" key={idx}>
+                                <h3>{cat.title}</h3>
+                                <div className="skill-tags">
+                                    {cat.skills.map((skill, i) => (
+                                        <span key={i} className="skill-tag">{skill}</span>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 <div className="stage-cube-cont">
