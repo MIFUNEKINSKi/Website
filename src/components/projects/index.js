@@ -9,15 +9,15 @@ const Projects = () => {
     const projects = [
         {
             name: "CloudClearingAPI",
-            tagline: "Satellite-powered investment scoring pipeline",
+            tagline: "Automated land investment pipeline — 65 regions, 5 data sources, weekly runs",
             highlights: [
-                "Ingests Sentinel-2 optical + Sentinel-1 SAR radar imagery via Google Earth Engine",
-                "Monitors 65 regions across Indonesia with weekly automated analysis",
-                "Fuses 5 data sources: satellite, real estate listings, OSM infrastructure, news sentiment, price history",
-                "Outputs ranked PDF reports with decision matrix, financial projections, and email delivery",
-                "Includes benchmark drift monitoring, momentum analysis, and JSONL price archives"
+                "Multi-source ETL: Sentinel-2 optical + Sentinel-1 SAR satellite imagery, live web scraping (94% coverage), OSM Overpass API (78% live), news sentiment, JSONL price archives",
+                "Dual-sensor fusion pipeline: optical and radar change detection via Google Earth Engine with cascading date-range fallback",
+                "65-region scoring engine: 4-tier market classification, RVI valuation, infrastructure proximity decay, momentum analysis",
+                "Automated reporting: ranked PDF with decision matrix, financial projections, benchmark drift monitoring, auto-email delivery",
+                "Production-ready: Docker multi-stage build, Terraform IaC (5 modules, ~70 AWS resources), Step Functions orchestration"
             ],
-            techStack: ["Python", "Google Earth Engine", "dbt", "PostgreSQL", "Sentinel-1/2", "OSM Overpass API", "Docker", "Terraform"],
+            techStack: ["Python", "Google Earth Engine", "AWS (ECS, Step Functions, S3)", "Terraform", "Docker", "OSM Overpass API", "Web Scraping", "Sentinel-1/2"],
             githubLink: "https://github.com/MIFUNEKINSKi/CloudClearingAPI",
             accent: "#4CAF50"
         },
