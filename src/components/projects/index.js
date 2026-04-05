@@ -299,7 +299,7 @@ const exportNoteCard = async (rootNode) => {
                 { value: "RTK", label: "State" },
                 { value: "TMDB", label: "Metadata" },
             ],
-            techStack: ["TypeScript", "React 18", "Redux Toolkit", "React Router", "Webpack 5", "Ruby on Rails", "PostgreSQL", "Active Storage", "TMDB API", "Heroku"],
+            techStack: ["TypeScript", "React 18", "Redux Toolkit", "React Router", "Webpack 5", "Ruby on Rails", "PostgreSQL", "Active Storage", "TMDB API", "Render"],
             architecture: [
                 "TypeScript frontend (tsx entry, ts-loader) with Redux Toolkit async thunks calling Rails JSON under /api",
                 "Rails API serves movies, genres, list items, and profiles; PostgreSQL + Active Storage for thumbnails and trailers",
@@ -340,7 +340,7 @@ end`,
                 height: 495,
             },
             deepDive: "The app has been modernized on the client: JavaScript React gave way to TypeScript with explicit API types, Redux Toolkit for thunks and slices, and Webpack 5 for bundling. On the server, a TmdbService plus rake tasks (e.g. tmdb:sync) pull ratings, posters, and backdrops from TMDB so the catalog stays aligned with industry metadata while Rails continues to own auth, profiles, and My List.",
-            liveLink: "https://auteurflix.herokuapp.com/",
+            liveLink: "https://auteurflix-0vvx.onrender.com/#/browse",
             githubLink: "https://github.com/MIFUNEKINSKi/AuteurFlix",
         },
     ];
