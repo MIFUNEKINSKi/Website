@@ -175,41 +175,45 @@ def map_condition(fhir_bundle, concept_lookup):
             githubLink: "https://github.com/MIFUNEKINSKi/VitalStream",
         },
         {
-            name: "Geospatial Investment Scorer",
-            tagline: "Multi-source geospatial data aggregation and weighted scoring platform",
+            name: "CodeMark",
+            tagline: "Save, share, and discover code snippets with auto-generated documentation links",
             accent: "#2196F3",
             metrics: [
-                { value: "3", label: "API Sources" },
-                { value: "GEE", label: "Satellite" },
-                { value: "OSM", label: "Infrastructure" },
-                { value: "Weighted", label: "Scoring" },
+                { value: "MERN", label: "Full Stack" },
+                { value: "481", label: "Commits" },
+                { value: "IDE", label: "CodeMirror" },
+                { value: "API", label: "Google Search" },
             ],
-            techStack: ["Python", "Google Earth Engine", "GeoPandas", "REST APIs", "Shapely", "Data Fusion"],
+            techStack: ["React", "Redux", "Node.js", "Express", "MongoDB", "CodeMirror", "Google Search API", "Highlight.js"],
             architecture: [
-                "Aggregates satellite imagery change detection, property listing prices, and OSM infrastructure data into a unified scoring pipeline",
-                "Configurable weighted scoring: change detection weight, infrastructure proximity decay, market liquidity adjustments",
-                "Infrastructure proximity uses Haversine distance with exponential decay — closer features score higher",
-                "Corridor-level comparisons generate ranked investment zones",
+                "Multi-step note creation: paste code, auto-detect language via Highlight.js, extract keywords, fetch relevant docs via Google Custom Search API",
+                "Embedded CodeMirror 6 IDE with syntax highlighting, autocomplete, and dark theme for a native developer experience",
+                "MongoDB document model with user/note/comment clusters, custom RESTful and non-RESTful routes for likes, tags, and cascading deletes",
+                "Export any CodeMark as a high-res PNG (2x viewport resolution) via dom-to-image, shareable outside the platform",
+                "Highlight-to-comment: select code text to open a contextual comment modal referencing the exact snippet",
             ],
-            codeSnippet: `# Infrastructure proximity decay scoring
-for feature in osm_features:
-    center = feature.get('center', {})
-    feat_point = Point(center['lon'], center['lat'])
-    distance_km = target.distance(feat_point) * 111
+            codeSnippet: `// Keyword extraction → Google Custom Search
+const fetchResources = async (keywords, language) => {
+  const queries = keywords.map(kw =>
+    \`\${kw} \${language} documentation example\`
+  );
+  const results = await Promise.all(
+    queries.map(q =>
+      axios.get('/api/search', { params: { q } })
+    )
+  );
+  return results.flatMap(r => r.data.items);
+};
 
-    # Exponential decay: closer = higher score
-    if distance_km <= radius_km:
-        proximity = max(0, 1 - (distance_km / radius_km))
-        score += proximity * feature_weight
-
-# Weighted combination
-final = (
-    change_score * w_satellite +
-    infra_score  * w_infrastructure +
-    market_score * w_market
-)`,
-            deepDive: "This was the precursor to CloudClearingAPI — a proof of concept that validated the core hypothesis: satellite-detected land clearing correlates with infrastructure investment and rising land values. The scoring algorithm here evolved into the production multi-factor engine used in CloudClearingAPI.",
-            githubLink: "https://github.com/MIFUNEKINSKi/geospatial-investment-scorer",
+// Highlight code to comment
+onTextSelect={(selection) => {
+  dispatch(openCommentModal({
+    selectedCode: selection.text,
+    lineRange: [selection.start, selection.end]
+  }));
+}}`,
+            deepDive: "CodeMark solves a developer workflow gap: saving code snippets with context. Instead of bookmarking Stack Overflow links separately, you paste code and CodeMark auto-detects the language, extracts keywords, and fetches relevant documentation and discussions. Notes can be public (discoverable by others) or private, tagged for filtering, liked, and commented on with inline code references.",
+            githubLink: "https://github.com/jacobbenowitz/code-mark",
         },
         {
             name: "AuteurFlix",
