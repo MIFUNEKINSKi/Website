@@ -1,6 +1,8 @@
 import "./index.scss";
 import React, { useState } from 'react';
 import Loader from "react-loaders";
+import codeMarkDemoGif from "../../assets/images/code mark 1.gif";
+import auteurFlixDemoGif from "../../assets/images/AuteurFlix1.gif";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -49,6 +51,21 @@ const ProjectCard = ({ project, isExpanded, onToggle }) => (
                 ))}
             </div>
 
+            {project.demoMedia && (
+                <figure className="project-demo-media">
+                    <img
+                        src={project.demoMedia.src}
+                        alt={project.demoMedia.alt}
+                        loading="lazy"
+                        width={project.demoMedia.width}
+                        height={project.demoMedia.height}
+                    />
+                    {project.demoMedia.caption && (
+                        <figcaption>{project.demoMedia.caption}</figcaption>
+                    )}
+                </figure>
+            )}
+
             {isExpanded && (
                 <div className="expanded-content">
                     <div className="detail-columns">
@@ -63,6 +80,12 @@ const ProjectCard = ({ project, isExpanded, onToggle }) => (
                         <div className="detail-right">
                             <h3>Code</h3>
                             <CodeBlock code={project.codeSnippet} />
+                            {project.codeSnippetSecondary && (
+                                <>
+                                    <h4 className="code-subhead">More from the codebase</h4>
+                                    <CodeBlock code={project.codeSnippetSecondary} />
+                                </>
+                            )}
                         </div>
                     </div>
                     {project.deepDive && (
@@ -212,7 +235,28 @@ onTextSelect={(selection) => {
     lineRange: [selection.start, selection.end]
   }));
 }}`,
+            codeSnippetSecondary: `// High-res PNG export (2×) for sharing outside the app
+const exportNoteCard = async (rootNode) => {
+  const scale = 2;
+  const dataUrl = await domtoimage.toPng(rootNode, {
+    width: rootNode.offsetWidth * scale,
+    height: rootNode.offsetHeight * scale,
+    style: {
+      transform: \`scale(\${scale})\`,
+      transformOrigin: 'top left',
+    },
+  });
+  triggerDownload(dataUrl, \`codemark-\${Date.now()}.png\`);
+};`,
+            demoMedia: {
+                src: codeMarkDemoGif,
+                alt: "Screen recording of CodeMark: editor, notes, and doc links",
+                caption: "Demo: CodeMirror editor, saved CodeMarks, and fetched resources",
+                width: 880,
+                height: 495,
+            },
             deepDive: "CodeMark solves a developer workflow gap: saving code snippets with context. Instead of bookmarking Stack Overflow links separately, you paste code and CodeMark auto-detects the language, extracts keywords, and fetches relevant documentation and discussions. Notes can be public (discoverable by others) or private, tagged for filtering, liked, and commented on with inline code references.",
+            liveLink: "https://code-mark.herokuapp.com/#/",
             githubLink: "https://github.com/jacobbenowitz/code-mark",
         },
         {
@@ -251,6 +295,28 @@ class Film < ApplicationRecord
       .order(year: :desc)
   }
 end`,
+            codeSnippetSecondary: `// React: genre rows with lazy-loaded backdrop art
+const GenreLane = ({ genre, films }) => (
+  <section className="genre-row">
+    <h2>{genre.name}</h2>
+    <div className="film-rail">
+      {films.map((film) => (
+        <FilmPoster
+          key={film.id}
+          film={film}
+          onHover={() => dispatch(loadPreviewClip(film.id))}
+        />
+      ))}
+    </div>
+  </section>
+);`,
+            demoMedia: {
+                src: auteurFlixDemoGif,
+                alt: "Screen recording of AuteurFlix browsing auteur films and collections",
+                caption: "Demo: Netflix-style rows, film detail, and curated auteur collections",
+                width: 880,
+                height: 495,
+            },
             liveLink: "https://auteurflix.herokuapp.com/",
             githubLink: "https://github.com/MIFUNEKINSKi/AuteurFlix",
         },
@@ -262,7 +328,7 @@ end`,
                 <div className="projects-scroll">
                     <h1>Projects</h1>
                     <p className="projects-intro">
-                        Click any project to see architecture details and code.
+                        Each card includes a live demo GIF where available. Expand for architecture notes and code samples.
                     </p>
                     <div className="projects-list">
                         {projects.map((project, idx) => (
