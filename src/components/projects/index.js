@@ -25,46 +25,70 @@ const MetricBadge = ({ value, label }) => (
     </div>
 );
 
-const ProjectCard = ({ project, isExpanded, onToggle }) => (
+const ProjectCard = ({ project, isExpanded, onToggle }) => {
+    const onExpandKeyDown = (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onToggle();
+        }
+    };
+
+    return (
     <div className={`project-card ${isExpanded ? 'expanded' : ''}`}>
         <div className="card-accent" style={{ backgroundColor: project.accent }} />
         <div className="card-content">
-            <div className="card-header" onClick={onToggle}>
-                <div className="header-text">
-                    <h2>{project.name}</h2>
-                    <p className="tagline">{project.tagline}</p>
+            <div
+                className="card-expand-zone"
+                onClick={onToggle}
+                onKeyDown={onExpandKeyDown}
+                role="button"
+                tabIndex={0}
+                aria-expanded={isExpanded}
+                aria-label={`${isExpanded ? "Collapse" : "Expand"} details for ${project.name}`}
+            >
+                <div className="card-header">
+                    <div className="header-text">
+                        <h2>{project.name}</h2>
+                        <p className="tagline">{project.tagline}</p>
+                    </div>
+                    <span className="expand-btn" aria-hidden="true">
+                        <FontAwesomeIcon icon={isExpanded ? faChevronUp : faChevronDown} />
+                    </span>
                 </div>
-                <button className="expand-btn" aria-label="Toggle details">
-                    <FontAwesomeIcon icon={isExpanded ? faChevronUp : faChevronDown} />
-                </button>
-            </div>
 
-            <div className="metrics-row">
-                {project.metrics.map((m, i) => (
-                    <MetricBadge key={i} value={m.value} label={m.label} />
-                ))}
-            </div>
+                <div className="metrics-row">
+                    {project.metrics.map((m, i) => (
+                        <MetricBadge key={i} value={m.value} label={m.label} />
+                    ))}
+                </div>
 
-            <div className="tech-chips">
-                {project.techStack.map((tech, i) => (
-                    <span className="chip" key={i}>{tech}</span>
-                ))}
-            </div>
+                <div className="tech-chips">
+                    {project.techStack.map((tech, i) => (
+                        <span className="chip" key={i}>{tech}</span>
+                    ))}
+                </div>
 
-            {project.demoMedia && (
-                <figure className="project-demo-media">
-                    <img
-                        src={project.demoMedia.src}
-                        alt={project.demoMedia.alt}
-                        loading="lazy"
-                        width={project.demoMedia.width}
-                        height={project.demoMedia.height}
-                    />
-                    {project.demoMedia.caption && (
-                        <figcaption>{project.demoMedia.caption}</figcaption>
-                    )}
-                </figure>
-            )}
+                {project.demoMedia && (
+                    <figure className="project-demo-media">
+                        <img
+                            src={project.demoMedia.src}
+                            alt={project.demoMedia.alt}
+                            loading="lazy"
+                            width={project.demoMedia.width}
+                            height={project.demoMedia.height}
+                        />
+                        {project.demoMedia.caption && (
+                            <figcaption>{project.demoMedia.caption}</figcaption>
+                        )}
+                    </figure>
+                )}
+
+                {!isExpanded && (
+                    <p className="expand-hint">
+                        Click this block (or press Enter) for architecture, code samples, and technical notes.
+                    </p>
+                )}
+            </div>
 
             {isExpanded && (
                 <div className="expanded-content">
@@ -109,7 +133,8 @@ const ProjectCard = ({ project, isExpanded, onToggle }) => (
             </div>
         </div>
     </div>
-);
+    );
+};
 
 const Projects = () => {
     const [expandedIdx, setExpandedIdx] = useState(null);
@@ -133,14 +158,18 @@ const Projects = () => {
             architecture: [
                 "Dual-sensor satellite fusion: Sentinel-2 optical + Sentinel-1 SAR radar via Google Earth Engine with cascading date-range fallback",
                 "5-layer caching: GEE (14d), SAR (14d), OSM (7d), news (7d), scraper (24h) — second run finishes in a fraction of the time",
-                "Parallel scoring: ThreadPoolExecutor processes 4 regions concurrently, cutting scoring from ~50 min to ~15 min",
+                "Parallel scoring: ThreadPoolExecutor (configurable workers, default 2) cuts full-run scoring time versus single-threaded",
                 "News week-over-week rate of change: compares article counts between runs, feeds surging coverage into momentum multiplier",
                 "Production IaC: Terraform (5 modules, ~70 AWS resources), Docker multi-stage build, Step Functions orchestration",
             ],
             codeSnippet: `# Parallel scoring with week-over-week news momentum
 prev_news = self._load_previous_news_counts()
+max_workers = max(1, min(
+    int(os.environ.get("CC_SCORING_MAX_WORKERS", "2")),
+    len(monitoring_regions),
+))
 
-with ThreadPoolExecutor(max_workers=4) as executor:
+with ThreadPoolExecutor(max_workers=max_workers) as executor:
     futures = {
         executor.submit(
             self._score_single_region, region, prev_news
@@ -148,7 +177,7 @@ with ThreadPoolExecutor(max_workers=4) as executor:
         for region in monitoring_regions
     }
     for future in as_completed(futures):
-        result = future.result(timeout=180)
+        result = future.result(timeout=int(os.environ.get("CC_SCORE_REGION_TIMEOUT_SEC", "1200")))
         if result:
             scored.append(result)
 
@@ -261,55 +290,47 @@ const exportNoteCard = async (rootNode) => {
         },
         {
             name: "AuteurFlix",
-            tagline: "Full-stack auteur cinema platform with personalized collections",
+            tagline: "Netflix-style streaming UI — TypeScript/React, Rails API, TMDB-enriched catalog",
             accent: "#E91E63",
             metrics: [
-                { value: "React", label: "Frontend" },
-                { value: "Rails", label: "Backend" },
-                { value: "Redux", label: "State" },
-                { value: "PG", label: "Database" },
+                { value: "TS", label: "Frontend" },
+                { value: "Rails", label: "API" },
+                { value: "RTK", label: "State" },
+                { value: "TMDB", label: "Metadata" },
             ],
-            techStack: ["React", "Redux", "Ruby on Rails", "PostgreSQL", "JavaScript", "REST API"],
+            techStack: ["TypeScript", "React 18", "Redux Toolkit", "React Router", "Webpack 5", "Ruby on Rails", "PostgreSQL", "Active Storage", "TMDB API", "Heroku"],
             architecture: [
-                "React/Redux SPA with client-side routing and optimistic UI updates",
-                "Ruby on Rails API backend with JWT authentication and session management",
-                "PostgreSQL with ActiveRecord for curated film collections, watchlists, and user profiles",
-                "RESTful API design with nested resource routes",
+                "TypeScript frontend (tsx entry, ts-loader) with Redux Toolkit async thunks calling Rails JSON under /api",
+                "Rails API serves movies, genres, list items, and profiles; PostgreSQL + Active Storage for thumbnails and trailers",
+                "TmdbService syncs vote averages, poster/backdrop paths, and overviews from The Movie Database v3 (rake tmdb:sync)",
+                "JWT/session auth, multi-profile accounts, genre rows, search, and My List — same product flow as the original Netflix clone",
             ],
-            codeSnippet: `// Redux thunk: fetch curated collection
-export const fetchCollection = (directorId) =>
-  async (dispatch) => {
-    const res = await fetch(
-      \`/api/directors/\${directorId}/films\`,
-      { headers: authHeaders() }
-    );
-    const films = await res.json();
-    dispatch(receiveFilms(films));
-  };
+            codeSnippet: `// Redux Toolkit thunks → typed Rails JSON (frontend/store/api.ts)
+import * as MovieAPI from '../util/movie_api_util';
 
-// Rails: scoped film query
-class Film < ApplicationRecord
-  scope :by_director, ->(id) {
-    where(director_id: id)
-      .includes(:genres, :reviews)
-      .order(year: :desc)
-  }
-end`,
-            codeSnippetSecondary: `// React: genre rows with lazy-loaded backdrop art
-const GenreLane = ({ genre, films }) => (
-  <section className="genre-row">
-    <h2>{genre.name}</h2>
-    <div className="film-rail">
-      {films.map((film) => (
-        <FilmPoster
-          key={film.id}
-          film={film}
-          onHover={() => dispatch(loadPreviewClip(film.id))}
-        />
-      ))}
-    </div>
-  </section>
+export const fetchMovies = createAsyncThunk(
+  'movies/fetchAll',
+  MovieAPI.fetchMovies
+);
+
+export const fetchRecommendations = createAsyncThunk(
+  'movies/fetchRecommendations',
+  MovieAPI.fetchRecommendations
 );`,
+            codeSnippetSecondary: `# Rails: enrich catalog from TMDB (app/services/tmdb_service.rb)
+def sync_movie(movie)
+  result = search_movie(movie.title, movie.year)
+  return { status: :not_found } unless result
+  details = movie_details(result["id"])
+  movie.update!(
+    tmdb_id: details["id"],
+    tmdb_rating: details["vote_average"],
+    tmdb_poster_path: details["poster_path"],
+    tmdb_backdrop_path: details["backdrop_path"],
+    tmdb_last_synced_at: Time.current
+  )
+  { status: :synced, tmdb_id: details["id"] }
+end`,
             demoMedia: {
                 src: auteurFlixDemoGif,
                 alt: "Screen recording of AuteurFlix browsing auteur films and collections",
@@ -317,6 +338,7 @@ const GenreLane = ({ genre, films }) => (
                 width: 880,
                 height: 495,
             },
+            deepDive: "The app has been modernized on the client: JavaScript React gave way to TypeScript with explicit API types, Redux Toolkit for thunks and slices, and Webpack 5 for bundling. On the server, a TmdbService plus rake tasks (e.g. tmdb:sync) pull ratings, posters, and backdrops from TMDB so the catalog stays aligned with industry metadata while Rails continues to own auth, profiles, and My List.",
             liveLink: "https://auteurflix.herokuapp.com/",
             githubLink: "https://github.com/MIFUNEKINSKi/AuteurFlix",
         },
@@ -328,7 +350,7 @@ const GenreLane = ({ genre, films }) => (
                 <div className="projects-scroll">
                     <h1>Projects</h1>
                     <p className="projects-intro">
-                        Each card includes a live demo GIF where available. Expand for architecture notes and code samples.
+                        Demo GIFs show the product in motion. Click each project card (title, metrics, or GIF) to open architecture, code, and technical notes — links below stay separate.
                     </p>
                     <div className="projects-list">
                         {projects.map((project, idx) => (
