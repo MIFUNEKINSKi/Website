@@ -160,7 +160,8 @@ const Projects = () => {
                 "5-layer caching: GEE (14d), SAR (14d), OSM (7d), news (7d), scraper (24h) — second run finishes in a fraction of the time",
                 "Parallel scoring: ThreadPoolExecutor (configurable workers, default 2) cuts full-run scoring time versus single-threaded",
                 "News week-over-week rate of change: compares article counts between runs, feeds surging coverage into momentum multiplier",
-                "Production IaC: Terraform (5 modules, ~70 AWS resources), Docker multi-stage build, Step Functions orchestration",
+                "Production IaC: Terraform (6 modules: network, data lake, security, compute, monitoring, Step Functions), Docker multi-stage build, weekly ECS orchestration",
+                "Resilient OSM / Overpass: throttled global requests, connect+read timeouts, mirror rotation, optional cost-aware AWS (no NAT) for portfolio dev",
             ],
             codeSnippet: `# Parallel scoring with week-over-week news momentum
 prev_news = self._load_previous_news_counts()
