@@ -359,7 +359,6 @@ const exportNoteCard = async (rootNode) => {
                 height: 495,
             },
             deepDive: "CodeMark solves a developer workflow gap: saving code snippets with context. Instead of bookmarking Stack Overflow links separately, you paste code and CodeMark auto-detects the language, extracts keywords, and fetches relevant documentation and discussions. Notes can be public (discoverable by others) or private, tagged for filtering, liked, and commented on with inline code references.",
-            liveLink: "https://code-mark.herokuapp.com/#/",
             githubLink: "https://github.com/jacobbenowitz/code-mark",
         },
         {

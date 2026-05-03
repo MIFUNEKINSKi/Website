@@ -13,7 +13,7 @@ const About = () => {
         },
         {
             title: "Cloud & Infrastructure",
-            skills: ["AWS (S3, Glue, Athena, ECS, Step Functions, Lambda, DynamoDB, API Gateway, Cognito, CloudWatch)", "Terraform", "Docker", "GitHub Actions"]
+            skills: ["AWS Lambda", "API Gateway", "DynamoDB", "S3", "Glue / Athena", "Step Functions", "ECS", "Cognito", "CloudWatch", "Terraform", "Docker", "GitHub Actions"]
         },
         {
             title: "Data Engineering",
