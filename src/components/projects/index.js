@@ -190,6 +190,74 @@ if current_articles > prev_articles:
             githubLink: "https://github.com/MIFUNEKINSKi/CloudClearingAPI",
         },
         {
+            name: "HUMN",
+            tagline: "Event-driven biometrics platform — HealthKit ingest, async Lambda fan-out, DynamoDB sparse GSI",
+            accent: "#7C3AED",
+            metrics: [
+                { value: "9", label: "Lambdas" },
+                { value: "~1s", label: "Ingest→Score Lag" },
+                { value: "GSI", label: "Sparse Index" },
+                { value: "IaC", label: "Terraform" },
+            ],
+            techStack: ["AWS Lambda", "API Gateway v2", "DynamoDB", "DDB Streams", "S3", "Cognito", "Terraform", "CloudWatch", "k6", "Python", "TypeScript"],
+            architecture: [
+                "Event-driven ingest: HealthKit observer → API Gateway v2 → JSON-schema validator Lambda → async InvocationType=Event fan-out to scorer Lambda; upload-to-score lag drops from 15-min cron to ~1s",
+                "Cold archive: DynamoDB Streams → exporter Lambda → S3 partitioned JSONL, lifecycle-tiered to IA/Glacier",
+                "Sparse GSI on user_state (active_partition + last_event_ts, KEYS_ONLY projection) replaces table-Scan with active-only Query — avoids ~$30/mo DDB cost regression at 10k users",
+                "Per-user async-Invoke fan-out from cron breaks past Lambda's 15-min ceiling for sustained 1k-user concurrency",
+                "Observability: AWS Budget at $50/mo with 80%/100% alarms, per-Lambda CloudWatch metric filters (?ERROR ?Exception ?Traceback) routed to a single SNS topic — silent IAM-denial regressions surface within minutes",
+                "k6 load harness: ramp+hold+rampdown profile (100 VUs / 5min), p95/p99 thresholds on ingest + score-read, run-over-run CSV deltas",
+            ],
+            codeSnippet: `# Validator → scorer async fan-out
+# (lambdas/validator/handler.py)
+def handler(event, _ctx):
+    body = json.loads(event["body"])
+    validate(body, BIOMETRICS_SCHEMA)
+
+    sub = _user_sub_from_jwt(event)
+    _persist_batch(sub, body["samples"])
+    _upsert_user_metadata(  # writes active_partition for sparse GSI
+        sub,
+        last_event_ts=now_ms(),
+        timezone=body.get("timezone"),
+    )
+
+    # Best-effort fan-out: durable row already written;
+    # cron stays armed as the floor.
+    try:
+        LAMBDA.invoke(
+            FunctionName=SCORER_FN,
+            InvocationType="Event",
+            Payload=json.dumps({"sub": sub}),
+        )
+    except ClientError:
+        pass  # cron picks up the next pass
+
+    return {"statusCode": 202}`,
+            codeSnippetSecondary: `# Active-users sparse GSI replaces table-Scan
+# (lambdas/scorer/handler.py — cron entrypoint)
+def _users_with_recent_events():
+    pages = DDB.get_paginator("query").paginate(
+        TableName=STATE_TABLE,
+        IndexName="active-users-by-last-event",
+        KeyConditionExpression=Key("active_partition").eq("ACTIVE"),
+        ProjectionExpression="sub",
+    )
+    for page in pages:
+        for item in page["Items"]:
+            yield item["sub"]
+
+# Per-user async-Invoke breaks past the 15-min ceiling
+for sub in _users_with_recent_events():
+    LAMBDA.invoke(
+        FunctionName=SELF_FN,
+        InvocationType="Event",
+        Payload=json.dumps({"sub": sub}),
+    )`,
+            deepDive: "HUMN's backend is the kind of event-driven AWS architecture you'd expect in a small-team production system. Schema-validated ingestion at the edge, asynchronous Lambda fan-out so the writer never waits on the scorer, DynamoDB Streams driving a cold-archive exporter to S3 (partitioned JSONL, lifecycle-tiered to IA/Glacier), and a sparse GSI that swapped a table-Scan for an active-users-only Query before user count made the Scan unaffordable. Production-readiness work: per-user fan-out from cron to bypass Lambda's 15-min ceiling, AWS Budget + CloudWatch error-metric alarms wired to SNS, and a k6 load-test harness with run-over-run CSV deltas. Nine Lambdas and an iOS client share a single Terraform-defined API Gateway v2 surface; a 100-point evolutionary scoring engine across ten components applies weight-shuffle re-normalization when any signal is missing.",
+            githubLink: "https://github.com/MIFUNEKINSKi/HUMN",
+        },
+        {
             name: "VitalStream",
             tagline: "Healthcare data pipeline — HL7 FHIR clinical data to OMOP Common Data Model",
             accent: "#FF9900",
@@ -201,31 +269,36 @@ if current_articles > prev_articles:
             ],
             techStack: ["AWS Glue", "Athena", "S3", "Step Functions", "PySpark", "OMOP CDM", "HL7 FHIR", "Terraform"],
             architecture: [
-                "Ingests HL7 FHIR Bundle JSON into staging S3 buckets, partitioned by resource type and date",
-                "AWS Glue PySpark jobs map FHIR resources (Patient, Condition, Observation) to OMOP tables (person, condition_occurrence, measurement)",
-                "Vocabulary mapping across SNOMED-CT, ICD-10, LOINC, and RxNorm using OMOP concept tables",
-                "Step Functions orchestrates the ETL DAG with retry logic and SNS failure alerts",
-                "Athena provides serverless SQL over the OMOP Parquet data lake",
+                "Ingests HL7 FHIR R4 Bundle JSON (Patient, Encounter, Observation) into S3 landing zone with Lambda validation",
+                "AWS Glue PySpark jobs map FHIR resources to OMOP CDM v5.4 tables (person, visit_occurrence, measurement) using native Spark ops — explode, broadcast joins, StructType enforcement",
+                "LOINC-to-OMOP vocabulary lookup maps six vital signs (heart rate, blood pressure, temperature, respiratory rate, O2 saturation) to standardized concept_ids",
+                "Step Functions orchestrates the pipeline: FHIR-to-OMOP transform → data quality checks (null, range, referential integrity) → Glue Crawler catalog update",
+                "Athena provides serverless SQL over the OMOP Parquet data lake via Glue Data Catalog",
             ],
-            codeSnippet: `# FHIR Condition → OMOP condition_occurrence
-def map_condition(fhir_bundle, concept_lookup):
-    conditions = extract_resources(
-        fhir_bundle, "Condition"
+            codeSnippet: `# FHIR Observation → OMOP measurement (PySpark)
+def map_to_measurement(spark, observations_df,
+                       person_df, visit_df):
+    loinc_lookup = _build_lookup_df(
+        spark, LOINC_TO_OMOP,
+        "loinc_code", "measurement_concept_id"
     )
-    return conditions.withColumn(
-        "condition_concept_id",
-        map_snomed_to_omop(
-            col("code.coding.code"),
-            concept_lookup
+    return (
+        obs_with_refs
+        .join(broadcast(person_lookup),
+              on="patient_fhir_id", how="inner")
+        .join(broadcast(loinc_lookup),
+              on="loinc_code", how="left")
+        .select(
+            col("person_id"),
+            col("measurement_concept_id"),
+            to_date("effective_datetime")
+                .alias("measurement_date"),
+            col("value").cast(FloatType())
+                .alias("value_as_number"),
         )
-    ).select(
-        col("subject.reference").alias("person_id"),
-        col("condition_concept_id"),
-        col("onsetDateTime").alias("condition_start_date"),
-        col("clinicalStatus").alias("condition_status")
     )`,
-            deepDive: "VitalStream solves a core healthcare data engineering challenge: making heterogeneous clinical data queryable for analytics. Raw HL7 FHIR data from EHR systems is deeply nested JSON with inconsistent coding systems. The pipeline normalizes this into OMOP CDM, the standard analytical model used by OHDSI research networks, enabling cross-institutional cohort studies and outcomes analysis.",
-            githubLink: "https://github.com/MIFUNEKINSKi/VitalStream",
+            deepDive: "VitalStream solves a core healthcare data engineering challenge: making heterogeneous clinical data queryable for analytics. Raw HL7 FHIR R4 data from EHR systems is deeply nested JSON with varying coding systems. The pipeline normalizes this into OMOP CDM v5.4, the standard analytical model used by OHDSI research networks, with automated data quality gates that validate null checks, clinically plausible ranges, and referential integrity before data reaches the curated zone.",
+            githubLink: "https://github.com/MIFUNEKINSKi/vitalstream-clinical-lake",
         },
         {
             name: "CodeMark",

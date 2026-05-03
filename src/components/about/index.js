@@ -9,15 +9,15 @@ const About = () => {
     const skillCategories = [
         {
             title: "Languages & Frameworks",
-            skills: ["Python", "SQL", "PySpark", "JavaScript", "SAS", "React"]
+            skills: ["Python", "SQL", "PySpark", "TypeScript", "JavaScript", "SAS", "React"]
         },
         {
             title: "Cloud & Infrastructure",
-            skills: ["AWS (S3, Glue, Athena, ECS, Step Functions, Lambda)", "Terraform", "Docker", "GitHub Actions"]
+            skills: ["AWS (S3, Glue, Athena, ECS, Step Functions, Lambda, DynamoDB, API Gateway, Cognito, CloudWatch)", "Terraform", "Docker", "GitHub Actions"]
         },
         {
             title: "Data Engineering",
-            skills: ["ETL/ELT Pipelines", "dbt", "Web Scraping", "REST APIs", "JSONL / Parquet", "Data Quality"]
+            skills: ["ETL/ELT Pipelines", "Event-Driven Architectures", "dbt", "Web Scraping", "REST APIs", "JSONL / Parquet", "Data Quality"]
         },
         {
             title: "Specialized",
@@ -38,15 +38,18 @@ const About = () => {
                     </p>
                     <p>
                         Day to day, I work with <span className="technologies">Python, SQL,
-                        AWS, Terraform, Docker, and dbt</span>. I've built production pipelines
+                        AWS, Terraform, Docker, and dbt</span>. I've shipped production systems
                         that fuse satellite imagery with web-scraped market data, transform
-                        clinical records between healthcare standards, and score investment
-                        opportunities across 65 regions in real time.
+                        clinical records between healthcare standards, score investment
+                        opportunities across 65 regions weekly, and turn HealthKit observers
+                        into event-driven Lambda fan-outs with ~1-second upload-to-score lag.
                     </p>
                     <p>
-                        I care about reliability — caching layers, retry logic, data validation,
-                        and clear alerting. Good data engineering means the pipeline runs at 3 AM
-                        on Sunday and you don't get paged.
+                        I care about reliability — schema-validated ingestion, caching layers,
+                        retry logic, and observability that catches silent regressions before
+                        they reach a dashboard. Whether it's a weekly batch ETL or an
+                        event-driven Lambda surface, good data engineering means the pipeline
+                        runs at 3 AM on Sunday and nobody gets paged.
                     </p>
 
                     <div className="skills-grid">
