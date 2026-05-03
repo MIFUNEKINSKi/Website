@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.48f98815.css",
-    "main.js": "/static/js/main.0fd2938f.js",
+    "main.css": "/static/css/main.3132c3d9.css",
+    "main.js": "/static/js/main.edf2a7ef.js",
     "static/js/488.15c117bb.chunk.js": "/static/js/488.15c117bb.chunk.js",
     "static/media/code mark 1.gif": "/static/media/code mark 1.5cdc7dd02878c67277ea.gif",
     "static/media/AuteurFlix1.gif": "/static/media/AuteurFlix1.1c8be567b10ed8262e4e.gif",
@@ -12,12 +12,12 @@
     "static/media/CoolveticaRg-Regular.woff": "/static/media/CoolveticaRg-Regular.8307bfa187bccdc55f4d.woff",
     "static/media/CoolveticaRg-Regular.woff2": "/static/media/CoolveticaRg-Regular.7d1f3b1dd46ad6557a17.woff2",
     "index.html": "/index.html",
-    "main.48f98815.css.map": "/static/css/main.48f98815.css.map",
-    "main.0fd2938f.js.map": "/static/js/main.0fd2938f.js.map",
+    "main.3132c3d9.css.map": "/static/css/main.3132c3d9.css.map",
+    "main.edf2a7ef.js.map": "/static/js/main.edf2a7ef.js.map",
     "488.15c117bb.chunk.js.map": "/static/js/488.15c117bb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.48f98815.css",
-    "static/js/main.0fd2938f.js"
+    "static/css/main.3132c3d9.css",
+    "static/js/main.edf2a7ef.js"
   ]
 }
