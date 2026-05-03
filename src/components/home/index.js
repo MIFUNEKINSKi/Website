@@ -40,13 +40,16 @@ const Home = () => {
               idx={19}
             /> 
           </h1>
-          <h2>NEW YORK CITY, NEW YORK | (828) 442-2233 | MOOREXCHRISTOPHER@GMAIL.COM</h2>
+          <h2>NEW YORK CITY · OPEN TO NEW ROLES</h2>
           <ul className="home-links">
             <Link to="/about" className="flat-button">
               About Me
             </Link>
             <Link to="/projects" className="flat-button">
               Projects
+            </Link>
+            <Link to="/contact" className="flat-button">
+              Contact
             </Link>
           </ul>
         </div>

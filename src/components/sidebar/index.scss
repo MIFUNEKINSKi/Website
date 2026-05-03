@@ -85,10 +85,17 @@
                 font-weight: 700;
             }
         }
-        
-        a.contact-link {
+
+        a.projects-link {
             &:after {
                 content: 'PROJECTS';
+                font-weight: 700;
+            }
+        }
+
+        a.contact-link {
+            &:after {
+                content: 'CONTACT';
                 font-weight: 700;
             }
         }
@@ -217,14 +224,21 @@
                     font-weight: 700;
                 }
             }
-    
-            a.contact-link {
+
+            a.projects-link {
                 &:after {
                     content: 'PROJECTS';
                     font-weight: 700;
                 }
             }
-    
+
+            a.contact-link {
+                &:after {
+                    content: 'CONTACT';
+                    font-weight: 700;
+                }
+            }
+
             a.active {
                 svg {
                     color: #ffd700;
