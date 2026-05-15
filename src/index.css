@@ -491,7 +491,7 @@ p.lead {
   letter-spacing: -0.035em;
   line-height: 0.95;
   color: var(--ink);
-  margin-bottom: var(--s-4);
+  margin-bottom: var(--s-5);
 }
 .projects-h1 em {
   font-family: var(--f-display);
@@ -514,7 +514,7 @@ p.lead {
 
 .project-row {
   border-bottom: 1px solid var(--rule);
-  padding: var(--s-6) 0;
+  padding: var(--s-8) 0;
   position: relative;
 }
 .project-row.expanded {
@@ -588,7 +588,7 @@ p.lead {
 .metrics-row {
   display: flex;
   gap: 0;
-  margin: var(--s-5) 0 0 0;
+  margin: var(--s-6) 0 0 0;
   padding-left: 84px;
   border-top: 1px dashed var(--rule);
   padding-top: var(--s-3);
@@ -623,7 +623,7 @@ p.lead {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin: var(--s-5) 0 0 0;
+  margin: var(--s-6) 0 0 0;
   padding-left: 84px;
 }
 .chip {
@@ -840,7 +840,7 @@ p.lead {
   color: var(--ink);
   max-width: 52ch;
 }
-.about-intro p:first-child {
+.about-intro > div:first-child p {
   font-family: var(--f-display);
   font-style: italic;
   font-size: 26px;
