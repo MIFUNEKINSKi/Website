@@ -267,7 +267,7 @@ p.lead {
 .home-hero-name {
   font-family: var(--f-sans);
   font-weight: 400;
-  font-size: clamp(64px, 9vw, 128px);
+  font-size: clamp(48px, 7vw, 88px);
   letter-spacing: -0.045em;
   line-height: 0.92;
   color: var(--ink);
