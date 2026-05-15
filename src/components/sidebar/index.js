@@ -1,49 +1,78 @@
-import "./index.scss";
 import React from 'react';
-
 import { Link, NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faUser, faRectangleList, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import ProfilePhoto from "../../assets/images/headshot.jpg"
+import Icon from "../icon";
 
-
-const navClass = (base) => ({ isActive }) =>
-    isActive ? `${base} active` : base;
+const NAV = [
+    { to: "/",         label: "Index",    num: "01", end: true },
+    { to: "/about",    label: "About",    num: "02" },
+    { to: "/projects", label: "Projects", num: "03" },
+    { to: "/contact",  label: "Contact",  num: "04" },
+];
 
 const Sidebar = () => (
-    <div className="nav-bar">
-        <Link className='logo' to='/'>
-            <img src={ProfilePhoto} className="sidebar-photo" alt="logo"></img>
+    <aside className="rail">
+        <Link to="/" className="rail-wordmark">
+            Chris<span className="ampersand">·</span>Moore
         </Link>
-        <nav>
-            <NavLink end className={navClass("home-link")} to="/" title="Home">
-                <FontAwesomeIcon icon={faHome} color="#4d4d4e" />
-            </NavLink>
-            <NavLink className={navClass("about-link")} to="/about" title="About">
-                <FontAwesomeIcon icon={faUser} color="#4d4d4e" />
-            </NavLink>
-            <NavLink className={navClass("projects-link")} to="/projects" title="Projects">
-                <FontAwesomeIcon icon={faRectangleList} color="#4d4d4e" />
-            </NavLink>
-            <NavLink className={navClass("contact-link")} to="/contact" title="Contact">
-                <FontAwesomeIcon icon={faEnvelope} color="#4d4d4e" />
-            </NavLink>
-        </nav>
-        <ul>
-            <li>
-                <a target="_blank" rel="noreferrer" href='https://www.linkedin.com/in/chris-moore-27438989/'>
-                    <FontAwesomeIcon icon={faLinkedin} color="#4d4d4e"/>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" rel="noreferrer" href='https://github.com/MIFUNEKINSKi/'>
-                    <FontAwesomeIcon icon={faGithub} color="#4d4d4e"/>
-                </a>
-            </li>
-        </ul>
-    </div>
-)
+        <div className="rail-meta">
+            <span>Data &amp; Software Engineer</span>
+            <span>New York City</span>
+        </div>
 
+        <nav className="rail-nav" aria-label="Primary">
+            {NAV.map((n) => (
+                <NavLink
+                    key={n.to}
+                    to={n.to}
+                    end={n.end}
+                    className={({ isActive }) =>
+                        `rail-nav-item${isActive ? " active" : ""}`
+                    }
+                    title={n.label}
+                >
+                    <span className="rail-nav-num">{n.num}</span>
+                    <span className="rail-nav-label">{n.label}</span>
+                    <span className="rail-nav-active-dot" />
+                </NavLink>
+            ))}
+        </nav>
+
+        <div className="rail-spacer" />
+
+        <div className="rail-footer">
+            <div className="rail-availability">Available · May 2026</div>
+            <div className="rail-footer-social">
+                <a
+                    href="https://github.com/MIFUNEKINSKi/"
+                    aria-label="GitHub"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <Icon name="github" size={16} />
+                </a>
+                <a
+                    href="https://www.linkedin.com/in/chris-moore-27438989/"
+                    aria-label="LinkedIn"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <Icon name="linkedin" size={16} />
+                </a>
+                <a href="mailto:moorexchristopher@gmail.com" aria-label="Email">
+                    <Icon name="mail" size={16} />
+                </a>
+            </div>
+            <div
+                style={{
+                    color: "var(--ink-3)",
+                    fontSize: 10,
+                    letterSpacing: "0.10em",
+                }}
+            >
+                © MMXXVI
+            </div>
+        </div>
+    </aside>
+);
 
 export default Sidebar;

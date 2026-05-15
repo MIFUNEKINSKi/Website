@@ -1,96 +1,99 @@
-import "./index.scss";
 import React from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPython, faAws, faDocker } from "@fortawesome/free-brands-svg-icons";
-import { faDatabase, faSatelliteDish, faChartLine } from "@fortawesome/free-solid-svg-icons";
-import Loader from "react-loaders";
+import { SKILL_CATEGORIES } from "../../data/portfolio";
 
-const About = () => {
-    const skillCategories = [
-        {
-            title: "Languages & Frameworks",
-            skills: ["Python", "SQL", "PySpark", "TypeScript", "JavaScript", "SAS", "React"]
-        },
-        {
-            title: "Cloud & Infrastructure",
-            skills: ["AWS Lambda", "API Gateway", "DynamoDB", "S3", "Glue / Athena", "Step Functions", "ECS", "Cognito", "CloudWatch", "Terraform", "Docker", "GitHub Actions"]
-        },
-        {
-            title: "Data Engineering",
-            skills: ["ETL/ELT Pipelines", "Event-Driven Architectures", "dbt", "Web Scraping", "REST APIs", "JSONL / Parquet", "Data Quality"]
-        },
-        {
-            title: "Specialized",
-            skills: ["Google Earth Engine", "Geospatial (GeoPandas, Shapely)", "Satellite Imagery (Sentinel-1/2)", "OMOP CDM / HL7 FHIR"]
-        },
-    ];
+const PageSlug = ({ index, name }) => (
+    <div className="page-slug">
+        <span className="index">{index}</span>
+        <span>{name}</span>
+        <span className="rule" />
+        <span>NY · {new Date().getFullYear()}</span>
+    </div>
+);
 
-    return (
-        <div>
-            <div className="container about-page">
-                <div className="text-zone">
-                    <h1>About me</h1>
-                    <p>
-                        I build data pipelines that turn messy, multi-source data into
-                        actionable intelligence. My background spans healthcare analytics,
-                        geospatial data processing, and satellite imagery — I'm drawn to
-                        problems where the data is complex and the stakes are real.
-                    </p>
-                    <p>
-                        Day to day, I work with <span className="technologies">Python, SQL,
-                        AWS, Terraform, Docker, and dbt</span>. I've shipped production systems
-                        that fuse satellite imagery with web-scraped market data, transform
-                        clinical records between healthcare standards, score investment
-                        opportunities across 65 regions weekly, and turn HealthKit observers
-                        into event-driven Lambda fan-outs with ~1-second upload-to-score lag.
-                    </p>
-                    <p>
-                        I care about reliability — schema-validated ingestion, caching layers,
-                        retry logic, and observability that catches silent regressions before
-                        they reach a dashboard. Whether it's a weekly batch ETL or an
-                        event-driven Lambda surface, good data engineering means the pipeline
-                        runs at 3 AM on Sunday and nobody gets paged.
-                    </p>
+const About = () => (
+    <div className="about">
+        <PageSlug index="02" name="About" />
+        <h1 className="about-h1">
+            I build pipelines that <em>turn messy data</em>
+            <br />
+            into actionable intelligence.
+        </h1>
 
-                    <div className="skills-grid">
-                        {skillCategories.map((cat, idx) => (
-                            <div className="skill-category" key={idx}>
-                                <h3>{cat.title}</h3>
-                                <div className="skill-tags">
-                                    {cat.skills.map((skill, i) => (
-                                        <span key={i} className="skill-tag">{skill}</span>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
+        <section className="about-intro">
+            <div>
+                <p>
+                    My background spans{" "}
+                    <span className="accent">
+                        healthcare analytics, geospatial processing, and satellite imagery
+                    </span>{" "}
+                    — I'm drawn to problems where the data is complex and the stakes are real.
+                </p>
+            </div>
+            <div>
+                <p>
+                    Day to day, I work with Python, SQL, AWS, Terraform, Docker, and dbt.
+                    I've shipped production systems that fuse satellite imagery with web-scraped
+                    market data, transform clinical records between healthcare standards, score
+                    investment opportunities across 65 regions weekly, and turn HealthKit
+                    observers into event-driven Lambda fan-outs with ~1-second upload-to-score lag.
+                </p>
+                <p>
+                    I care about reliability — schema-validated ingestion, caching layers, retry
+                    logic, and observability that catches silent regressions before they reach a
+                    dashboard. Good data engineering means the pipeline runs at 3 AM on Sunday
+                    and nobody gets paged.
+                </p>
+            </div>
+        </section>
+
+        <section className="skills-block">
+            <div className="page-slug" style={{ margin: 0 }}>
+                <span className="index">02·a</span>
+                <span>Tools &amp; capabilities</span>
+                <span className="rule" />
+            </div>
+            <div className="skills-grid">
+                {SKILL_CATEGORIES.map((cat) => (
+                    <div className="skill-cat" key={cat.num}>
+                        <div className="skill-cat-num">{cat.num}</div>
+                        <h3>{cat.title}</h3>
+                        <div className="skill-list">
+                            {cat.skills.map((s, i) => (
+                                <span key={i}>{s}</span>
+                            ))}
+                        </div>
                     </div>
+                ))}
+            </div>
+        </section>
+
+        <section className="lives">
+            <h2>Past lives</h2>
+            <div className="lives-list">
+                <div className="life-row">
+                    <span className="life-year">2024 — 26</span>
+                    <span className="life-role">
+                        <em>Independent</em> projects — building &amp; shipping the work on the next page
+                    </span>
+                    <span className="life-place">Remote · NY</span>
                 </div>
-
-                <div className="stage-cube-cont">
-                    <div className="cubespinner">
-                        <div className="face1">
-                            <FontAwesomeIcon className="devicon" icon={faPython} color="#3776AB" />
-                        </div>
-                        <div className="face2">
-                            <FontAwesomeIcon className="devicon" icon={faAws} color="#FF9900" />
-                        </div>
-                        <div className="face3">
-                            <FontAwesomeIcon className="devicon" icon={faDocker} color="#2496ED" />
-                        </div>
-                        <div className="face4">
-                            <FontAwesomeIcon className="devicon" icon={faDatabase} color="#336791" />
-                        </div>
-                        <div className="face5">
-                            <FontAwesomeIcon className="devicon" icon={faSatelliteDish} color="#4CAF50" />
-                        </div>
-                        <div className="face6">
-                            <FontAwesomeIcon className="devicon" icon={faChartLine} color="#ffd700" />
-                        </div>
-                    </div>
+                <div className="life-row">
+                    <span className="life-year">Earlier</span>
+                    <span className="life-role">
+                        <em>Healthcare</em> analytics &amp; statistical programming · SAS / SQL
+                    </span>
+                    <span className="life-place">—</span>
+                </div>
+                <div className="life-row">
+                    <span className="life-year">Before</span>
+                    <span className="life-role">
+                        <em>School</em> &amp; a couple lateral moves into the field
+                    </span>
+                    <span className="life-place">—</span>
                 </div>
             </div>
-            <Loader type="line-scale"/>
-        </div>
-    )
-}
+        </section>
+    </div>
+);
+
 export default About;

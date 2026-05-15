@@ -1,62 +1,151 @@
-import { useEffect, useState } from 'react'
 import React from 'react';
+import { useNavigate } from "react-router-dom";
+import { PROJECTS } from "../../data/portfolio";
+import Icon from "../icon";
 
-import { Link } from 'react-router-dom'
-import AnimatedLetters from '../animated_letters'
-import './index.scss'
-import Loader from 'react-loaders'
+const PageSlug = ({ index, name }) => (
+    <div className="page-slug">
+        <span className="index">{index}</span>
+        <span>{name}</span>
+        <span className="rule" />
+        <span>NY · {new Date().getFullYear()}</span>
+    </div>
+);
 
-const Home = () => {
-  const [letterClass, setLetterClass] = useState('text-animate')
+const Home = ({ setExpandedProject }) => {
+    const navigate = useNavigate();
+    const featured = PROJECTS.slice(0, 2);
 
-  const nameArray = " Christopher Moore.".split('');
-  const jobArray = "Data Engineer.".split('');
+    const openProject = (id) => {
+        setExpandedProject(id);
+        navigate("/projects");
+    };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLetterClass('text-animate-hover')
-    }, 4000)
-  }, [])
+    return (
+        <div className="home">
+            <PageSlug index="01" name="Index" />
 
-  return (
-    <>
-      <div className="container home-page">
-        <div className="text-zone">
-          <h1>
-            <span className={letterClass}>H</span>
-            <span className={`${letterClass} _12`}>i,</span>
-            <br />
-            <span className={`${letterClass} _13`}>I</span>
-            <span className={`${letterClass} _14`}>'m</span>
-            <AnimatedLetters
-              letterClass={letterClass}
-              strArray={nameArray}
-              idx={15}
-            />
-            <br />
-            <AnimatedLetters
-              letterClass={letterClass}
-              strArray={jobArray}
-              idx={19}
-            /> 
-          </h1>
-          <h2>NEW YORK CITY · OPEN TO NEW ROLES</h2>
-          <ul className="home-links">
-            <Link to="/about" className="flat-button">
-              About Me
-            </Link>
-            <Link to="/projects" className="flat-button">
-              Projects
-            </Link>
-            <Link to="/contact" className="flat-button">
-              Contact
-            </Link>
-          </ul>
+            <header className="home-hero">
+                <h1 className="home-hero-name">
+                    <span className="lf">Christopher</span>
+                    <span className="lf">
+                        Moore <span className="editorial">— builds</span>
+                    </span>
+                    <span className="lf">
+                        <span className="editorial">data pipelines</span> that
+                    </span>
+                    <span className="lf">don't page anyone at 3&nbsp;AM.</span>
+                </h1>
+
+                <div className="home-positioning">
+                    <div className="home-positioning-meta">
+                        <span>Currently</span>
+                        Job seeking
+                        <br />
+                        <span style={{ marginTop: 12, display: "block" }}>Roles</span>
+                        Data Eng · Analytics · SWE
+                        <br />
+                        <span style={{ marginTop: 12, display: "block" }}>Stack</span>
+                        Python · AWS · Terraform
+                    </div>
+                    <p>
+                        Mid-senior <em>data engineer</em> shipping production AWS — event-driven
+                        biometrics, satellite-fused land-investment scoring, and HL7&nbsp;FHIR
+                        → OMOP healthcare pipelines. Looking for the next problem where the
+                        data is messy and the stakes are real.
+                    </p>
+                </div>
+
+                <div className="home-cta-row">
+                    <button className="cta" onClick={() => navigate("/projects")}>
+                        See selected work <Icon name="arrowR" size={14} />
+                    </button>
+                    <button className="cta ghost" onClick={() => navigate("/contact")}>
+                        Get in touch
+                    </button>
+                </div>
+            </header>
+
+            <section className="featured-section">
+                <div className="featured-header">
+                    <h2>Featured work</h2>
+                    <span
+                        className="see-all"
+                        onClick={() => navigate("/projects")}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") navigate("/projects");
+                        }}
+                    >
+                        See all {PROJECTS.length} projects →
+                    </span>
+                </div>
+                <div className="featured-grid">
+                    {featured.map((p) => (
+                        <article
+                            key={p.id}
+                            className="featured-card"
+                            onClick={() => openProject(p.id)}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") openProject(p.id);
+                            }}
+                        >
+                            <div className="featured-card-top">
+                                <h3>{p.name}</h3>
+                                <div
+                                    className="featured-accent"
+                                    style={{ "--accent-color": p.accent }}
+                                />
+                            </div>
+                            <p className="tagline">{p.tagline}</p>
+                            <div className="featured-card-meta">
+                                {p.metrics.slice(0, 3).map((m, i) => (
+                                    <span key={i}>
+                                        <strong>{m.value}</strong>
+                                        {m.label}
+                                    </span>
+                                ))}
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </section>
+
+            <section className="tech-strip">
+                <div className="tech-strip-rule">
+                    <span>What I reach for</span>
+                    <span className="rule" />
+                    <span>2026</span>
+                </div>
+                <div className="tech-strip-content">
+                    <span>Python</span>
+                    <span className="sep">/</span>
+                    <span>PySpark</span>
+                    <span className="sep">/</span>
+                    <span>SQL</span>
+                    <span className="sep">/</span>
+                    <span>TypeScript</span>
+                    <span className="sep">/</span>
+                    <span>AWS</span>
+                    <span className="sep">/</span>
+                    <span>Terraform</span>
+                    <span className="sep">/</span>
+                    <span>Docker</span>
+                    <span className="sep">/</span>
+                    <span className="dim">React</span>
+                    <span className="sep">/</span>
+                    <span className="dim">dbt</span>
+                    <span className="sep">/</span>
+                    <span className="dim">Earth Engine</span>
+                    <span className="sep">/</span>
+                    <span className="dim">OMOP · FHIR</span>
+                </div>
+            </section>
         </div>
-      </div>
-      <Loader type="line-scale"/>
-    </>
-  )
-}
+    );
+};
 
-export default Home
+export default Home;
