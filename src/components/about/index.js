@@ -24,7 +24,8 @@ const About = () => (
                 <p>
                     My background spans{" "}
                     <span className="accent">
-                        healthcare analytics, geospatial processing, and satellite imagery
+                        healthcare analytics, statistical programming, geospatial processing,
+                        and satellite imagery
                     </span>{" "}
                     — I'm drawn to problems where the data is complex and the stakes are real.
                 </p>

@@ -299,7 +299,7 @@ export const SKILL_CATEGORIES = [
     {
         num: "01",
         title: "Languages & Frameworks",
-        skills: ["Python", "SQL", "PySpark", "TypeScript", "JavaScript", "SAS", "React"],
+        skills: ["Python", "R", "SAS", "SQL", "PySpark", "TypeScript", "JavaScript", "React"],
     },
     {
         num: "02",

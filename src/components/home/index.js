@@ -43,16 +43,16 @@ const Home = ({ setExpandedProject }) => {
                         Job seeking
                         <br />
                         <span style={{ marginTop: 12, display: "block" }}>Roles</span>
-                        Data Eng · Analytics · SWE
+                        Data Eng · Stat Programming · Analytics · SWE
                         <br />
                         <span style={{ marginTop: 12, display: "block" }}>Stack</span>
-                        Python · AWS · Terraform
+                        Python · R · SAS · AWS · Terraform
                     </div>
                     <p>
-                        Mid-senior <em>data engineer</em> shipping production AWS — event-driven
-                        biometrics, satellite-fused land-investment scoring, and HL7&nbsp;FHIR
-                        → OMOP healthcare pipelines. Looking for the next problem where the
-                        data is messy and the stakes are real.
+                        <em>Data engineer and statistical programmer</em> shipping production AWS
+                        — event-driven biometrics, satellite-fused land-investment scoring, and
+                        HL7&nbsp;FHIR → OMOP healthcare pipelines. Looking for the next problem
+                        where the data is messy and the stakes are real.
                     </p>
                 </div>
 
@@ -123,9 +123,13 @@ const Home = ({ setExpandedProject }) => {
                 <div className="tech-strip-content">
                     <span>Python</span>
                     <span className="sep">/</span>
-                    <span>PySpark</span>
+                    <span>R</span>
+                    <span className="sep">/</span>
+                    <span>SAS</span>
                     <span className="sep">/</span>
                     <span>SQL</span>
+                    <span className="sep">/</span>
+                    <span>PySpark</span>
                     <span className="sep">/</span>
                     <span>TypeScript</span>
                     <span className="sep">/</span>
@@ -135,13 +139,13 @@ const Home = ({ setExpandedProject }) => {
                     <span className="sep">/</span>
                     <span>Docker</span>
                     <span className="sep">/</span>
+                    <span>OMOP · FHIR</span>
+                    <span className="sep">/</span>
                     <span className="dim">React</span>
                     <span className="sep">/</span>
                     <span className="dim">dbt</span>
                     <span className="sep">/</span>
                     <span className="dim">Earth Engine</span>
-                    <span className="sep">/</span>
-                    <span className="dim">OMOP · FHIR</span>
                 </div>
             </section>
         </div>
