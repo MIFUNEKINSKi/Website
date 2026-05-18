@@ -39,10 +39,7 @@ const Home = ({ setExpandedProject }) => {
 
                 <div className="home-positioning">
                     <div className="home-positioning-meta">
-                        <span>Currently</span>
-                        Job seeking
-                        <br />
-                        <span style={{ marginTop: 12, display: "block" }}>Roles</span>
+                        <span>Focus</span>
                         Data Eng · Stat Programming · Analytics · SWE
                         <br />
                         <span style={{ marginTop: 12, display: "block" }}>Stack</span>
@@ -51,8 +48,8 @@ const Home = ({ setExpandedProject }) => {
                     <p>
                         <em>Data engineer and statistical programmer</em> shipping production AWS
                         — event-driven biometrics, satellite-fused land-investment scoring, and
-                        HL7&nbsp;FHIR → OMOP healthcare pipelines. Looking for the next problem
-                        where the data is messy and the stakes are real.
+                        HL7&nbsp;FHIR → OMOP healthcare pipelines. Best work happens where
+                        the data is messy and the stakes are real.
                     </p>
                 </div>
 

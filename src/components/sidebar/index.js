@@ -40,7 +40,6 @@ const Sidebar = () => (
         <div className="rail-spacer" />
 
         <div className="rail-footer">
-            <div className="rail-availability">Available · May 2026</div>
             <div className="rail-footer-social">
                 <a
                     href="https://github.com/MIFUNEKINSKi/"
