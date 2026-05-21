@@ -15,7 +15,8 @@ const Sidebar = () => (
             Chris<span className="ampersand">·</span>Moore
         </Link>
         <div className="rail-meta">
-            <span>Data &amp; Software Engineer</span>
+            <span>Statistical Programmer</span>
+            <span>Data Systems · AI</span>
             <span>New York City</span>
         </div>
 

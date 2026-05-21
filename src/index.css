@@ -198,7 +198,7 @@ img { max-width: 100%; display: block; }
 /* Main column ---------------------------------------------*/
 .main {
   min-width: 0;
-  padding: var(--s-9) var(--s-9) var(--s-10);
+  padding: var(--s-8) var(--s-9) var(--s-10);
   max-width: 1280px;
 }
 .main-inner { max-width: var(--maxw); }
@@ -254,7 +254,7 @@ p.lead {
 .home {
   display: flex;
   flex-direction: column;
-  gap: var(--s-9);
+  gap: var(--s-8);
 }
 
 .home-hero {
@@ -267,16 +267,17 @@ p.lead {
 .home-hero-name {
   font-family: var(--f-sans);
   font-weight: 400;
-  font-size: clamp(48px, 7vw, 88px);
-  letter-spacing: -0.045em;
-  line-height: 0.92;
+  font-size: 68px;
+  letter-spacing: 0;
+  line-height: 1.02;
   color: var(--ink);
+  max-width: 11.5em;
 }
 .home-hero-name .editorial {
   display: inline;
   color: var(--accent);
   font-style: italic;
-  letter-spacing: -0.025em;
+  letter-spacing: 0;
 }
 .home-hero-name .lf { display: block; }
 
@@ -284,7 +285,7 @@ p.lead {
   display: grid;
   grid-template-columns: 200px 1fr;
   gap: var(--s-6);
-  margin-top: var(--s-7);
+  margin-top: var(--s-6);
   padding-top: var(--s-5);
   border-top: 1px solid var(--rule);
 }
@@ -299,9 +300,9 @@ p.lead {
 .home-positioning-meta span { color: var(--ink); display: block; }
 
 .home-positioning p {
-  font-size: 22px;
+  font-size: 19px;
   line-height: 1.45;
-  letter-spacing: -0.012em;
+  letter-spacing: 0;
   color: var(--ink);
   margin: 0;
   max-width: 50ch;
@@ -310,7 +311,7 @@ p.lead {
   font-family: var(--f-display);
   font-style: italic;
   font-size: 1.10em;
-  letter-spacing: -0.015em;
+  letter-spacing: 0;
   color: var(--accent-ink);
 }
 
@@ -1060,6 +1061,7 @@ p.lead {
 @media (max-width: 1024px) {
   :root { --rail-w: 220px; }
   .main { padding: var(--s-7) var(--s-6); }
+  .home-hero-name { font-size: 56px; }
   .featured-grid { grid-template-columns: 1fr; }
   .featured-card { padding-left: 0 !important; border-left: 0 !important; }
   .about-intro { grid-template-columns: 1fr; }
@@ -1086,6 +1088,7 @@ p.lead {
   .rail-nav-item { border: 0; padding: 0; grid-template-columns: auto auto; }
   .rail-spacer { display: none; }
   .rail-footer { display: none; }
+  .home-hero-name { font-size: 40px; }
   .metrics-row { padding-left: 0; flex-wrap: wrap; }
   .chips, .card-links, .project-expanded { padding-left: 0; }
   .project-row-header { grid-template-columns: 1fr auto; }
