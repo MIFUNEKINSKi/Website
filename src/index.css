@@ -824,21 +824,22 @@ p.lead {
 .about {
   display: flex;
   flex-direction: column;
-  gap: var(--s-8);
+  gap: var(--s-7);
 }
 .about-h1 {
   font-family: var(--f-sans);
   font-weight: 400;
-  font-size: clamp(56px, 8vw, 96px);
-  letter-spacing: -0.035em;
-  line-height: 0.95;
+  font-size: 64px;
+  letter-spacing: 0;
+  line-height: 1.04;
   margin: 0;
+  max-width: 12.5em;
 }
 .about-h1 em {
   font-family: var(--f-display);
   font-style: italic;
   color: var(--accent);
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .about-intro {
@@ -857,9 +858,9 @@ p.lead {
 .about-intro > div:first-child p {
   font-family: var(--f-display);
   font-style: italic;
-  font-size: 26px;
-  line-height: 1.4;
-  letter-spacing: -0.012em;
+  font-size: 21px;
+  line-height: 1.45;
+  letter-spacing: 0;
   color: var(--ink);
 }
 .about-intro p .accent { color: var(--accent-ink); font-style: italic; }
