@@ -59,7 +59,7 @@ if current_articles > prev_articles:
         num: "02",
         name: "HUMN",
         accent: "var(--proj-humn)",
-        tagline: "Event-driven biometrics platform — HealthKit ingest, async Lambda fan-out, DynamoDB sparse GSI.",
+        tagline: "Behavior-change health app — secure biometrics ingest, event-driven scoring, AWS serverless backend.",
         metrics: [
             { value: "9", label: "Lambdas" },
             { value: "~1s", label: "Ingest → Score" },
@@ -68,9 +68,11 @@ if current_articles > prev_articles:
         ],
         techStack: ["AWS Lambda", "API Gateway v2", "DynamoDB", "DDB Streams", "S3", "Cognito", "Terraform", "CloudWatch", "k6", "Python", "TypeScript"],
         architecture: [
+            "Product loop: biometric and behavior events → API Gateway v2 → JSON-schema validator Lambda → DynamoDB user_state → scorer Lambda → score-read API",
             "Event-driven ingest: HealthKit observer → API Gateway v2 → JSON-schema validator Lambda → async InvocationType=Event fan-out to scorer Lambda; upload-to-score lag drops from 15-min cron to ~1s",
             "Cold archive: DynamoDB Streams → exporter Lambda → S3 partitioned JSONL, lifecycle-tiered to IA/Glacier",
             "Sparse GSI on user_state (active_partition + last_event_ts, KEYS_ONLY projection) replaces table-Scan with active-only Query — avoids ~$30/mo DDB cost regression at 10k users",
+            "Security model: Cognito/JWT-authenticated API routes, least-privilege IAM, and privacy-conscious data boundaries between ingest, scoring, archive, and read paths",
             "Per-user async-Invoke fan-out from cron breaks past Lambda's 15-min ceiling for sustained 1k-user concurrency",
             "Observability: AWS Budget at $50/mo with 80%/100% alarms, per-Lambda CloudWatch metric filters routed to a single SNS topic — silent IAM-denial regressions surface within minutes",
             "k6 load harness: ramp+hold+rampdown profile (100 VUs / 5min), p95/p99 thresholds on ingest + score-read, run-over-run CSV deltas",
@@ -121,7 +123,7 @@ for sub in _users_with_recent_events():
         InvocationType="Event",
         Payload=json.dumps({"sub": sub}),
     )`,
-        deepDive: "HUMN's backend is the kind of event-driven AWS architecture you'd expect in a small-team production system. Schema-validated ingestion at the edge, asynchronous Lambda fan-out so the writer never waits on the scorer, DynamoDB Streams driving a cold-archive exporter to S3 (partitioned JSONL, lifecycle-tiered to IA/Glacier), and a sparse GSI that swapped a table-Scan for an active-users-only Query before user count made the Scan unaffordable. Production-readiness work: per-user fan-out from cron to bypass Lambda's 15-min ceiling, AWS Budget + CloudWatch error-metric alarms wired to SNS, and a k6 load-test harness with run-over-run CSV deltas.",
+        deepDive: "HUMN is the clearest expression of the direction I am pushing toward: healthcare-adjacent product engineering backed by reliable data systems. The backend uses schema-validated ingest at the edge, asynchronous Lambda fan-out so the writer never waits on scoring, DynamoDB Streams driving a cold-archive exporter to S3, and a sparse GSI that swapped a table-Scan for an active-users-only Query before user count made the Scan unaffordable. Production-readiness work includes Cognito/JWT access control, least-privilege IAM, per-user fan-out from cron to bypass Lambda's 15-min ceiling, AWS Budget + CloudWatch error-metric alarms wired to SNS, and a k6 load-test harness with run-over-run CSV deltas.",
         githubLink: "https://github.com/MIFUNEKINSKi/HUMN",
     },
     {
@@ -298,22 +300,22 @@ end`,
 export const SKILL_CATEGORIES = [
     {
         num: "01",
-        title: "Languages & Frameworks",
-        skills: ["Python", "R", "SAS", "SQL", "PySpark", "TypeScript", "JavaScript", "React"],
+        title: "Statistical Programming & Data",
+        skills: ["SAS", "Python", "SQL", "R", "Clinical Data", "QC Validation", "Analysis-Ready Datasets", "Reproducible Outputs"],
     },
     {
         num: "02",
-        title: "Cloud & Infrastructure",
-        skills: ["AWS Lambda", "API Gateway", "DynamoDB", "S3", "Glue / Athena", "Step Functions", "ECS", "Cognito", "CloudWatch", "Terraform", "Docker", "GitHub Actions"],
+        title: "Cloud & Integration",
+        skills: ["AWS Lambda", "API Gateway", "DynamoDB", "S3", "Glue / Athena", "Step Functions", "Cognito", "CloudWatch", "Terraform", "Docker", "GitHub Actions"],
     },
     {
         num: "03",
-        title: "Data Engineering",
-        skills: ["ETL/ELT Pipelines", "Event-Driven Architectures", "dbt", "Web Scraping", "REST APIs", "JSONL / Parquet", "Data Quality"],
+        title: "Data Systems",
+        skills: ["ETL/ELT Pipelines", "Event-Driven Architectures", "Schema Validation", "Data Quality", "REST APIs", "JSONL / Parquet", "dbt-Style Modeling", "Observability"],
     },
     {
         num: "04",
-        title: "Specialized",
-        skills: ["Google Earth Engine", "Geospatial (GeoPandas / Shapely)", "Satellite Imagery (Sentinel-1/2)", "OMOP CDM / HL7 FHIR"],
+        title: "AI & Product Adjacent",
+        skills: ["AI Integration", "LLM Workflows", "Behavioral Scoring", "Health Data Products", "OMOP CDM / HL7 FHIR", "Geospatial Analytics"],
     },
 ];

@@ -14,29 +14,37 @@ const About = () => (
     <div className="about">
         <PageSlug index="02" name="About" />
         <h1 className="about-h1">
-            I build pipelines that <em>turn messy data</em>
+            I work where <em>statistical programming</em>
             <br />
-            into actionable intelligence.
+            meets production data systems.
         </h1>
 
         <section className="about-intro">
             <div>
                 <p>
-                    My background spans{" "}
+                    My work sits between{" "}
                     <span className="accent">
-                        healthcare analytics, statistical programming, geospatial processing,
-                        and satellite imagery
+                        regulated clinical data, statistical programming, data engineering,
+                        and software integration
                     </span>{" "}
-                    — I'm drawn to problems where the data is complex and the stakes are real.
+                    — the common thread is making messy, high-stakes data reliable enough
+                    for decisions.
                 </p>
             </div>
             <div>
                 <p>
-                    Day to day, I work with Python, SQL, AWS, Terraform, Docker, and dbt.
-                    I've shipped production systems that fuse satellite imagery with web-scraped
-                    market data, transform clinical records between healthcare standards, score
-                    investment opportunities across 65 regions weekly, and turn HealthKit
-                    observers into event-driven Lambda fan-outs with ~1-second upload-to-score lag.
+                    I am currently a Statistical Programmer at Parexel, working in a regulated
+                    environment where correctness, documentation, reproducibility, and validation
+                    matter because downstream outputs support clinical research decisions.
+                    My technical toolkit includes SAS, Python, SQL, R, AWS, Terraform, Docker,
+                    and modern analytics engineering patterns.
+                </p>
+                <p>
+                    Outside work, I build product systems that stretch that foundation into
+                    software engineering: HUMN uses API Gateway, Lambda, DynamoDB, S3, Cognito,
+                    Terraform, and scoring logic to turn biometric and digital-behavior signals
+                    into product-facing feedback loops. Other projects cover healthcare
+                    interoperability, geospatial analytics, and automated data products.
                 </p>
                 <p>
                     I care about reliability — schema-validated ingestion, caching layers, retry
@@ -72,23 +80,23 @@ const About = () => (
             <h2>Past lives</h2>
             <div className="lives-list">
                 <div className="life-row">
+                    <span className="life-year">2023 — now</span>
+                    <span className="life-role">
+                        <em>Parexel</em> — Statistical Programmer · regulated clinical data / SAS / Python / SQL
+                    </span>
+                    <span className="life-place">Remote · NY</span>
+                </div>
+                <div className="life-row">
                     <span className="life-year">2024 — 26</span>
                     <span className="life-role">
-                        <em>Independent</em> projects — building &amp; shipping the work on the next page
+                        <em>Independent</em> projects — HUMN, healthcare data systems, and applied AI/data products
                     </span>
                     <span className="life-place">Remote · NY</span>
                 </div>
                 <div className="life-row">
                     <span className="life-year">Earlier</span>
                     <span className="life-role">
-                        <em>Healthcare</em> analytics &amp; statistical programming · SAS / SQL
-                    </span>
-                    <span className="life-place">—</span>
-                </div>
-                <div className="life-row">
-                    <span className="life-year">Before</span>
-                    <span className="life-role">
-                        <em>School</em> &amp; a couple lateral moves into the field
+                        <em>Software</em> training and project work — full-stack apps, APIs, and data tooling
                     </span>
                     <span className="life-place">—</span>
                 </div>

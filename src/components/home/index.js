@@ -14,7 +14,9 @@ const PageSlug = ({ index, name }) => (
 
 const Home = ({ setExpandedProject }) => {
     const navigate = useNavigate();
-    const featured = PROJECTS.slice(0, 2);
+    const featured = ["humn", "vitalstream"].map((id) =>
+        PROJECTS.find((project) => project.id === id)
+    ).filter(Boolean);
 
     const openProject = (id) => {
         setExpandedProject(id);
@@ -32,24 +34,25 @@ const Home = ({ setExpandedProject }) => {
                         Moore <span className="editorial">— builds</span>
                     </span>
                     <span className="lf">
-                        <span className="editorial">data pipelines</span> that
+                        <span className="editorial">trusted data systems</span>
                     </span>
-                    <span className="lf">don't page anyone at 3&nbsp;AM.</span>
+                    <span className="lf">for regulated, real-world work.</span>
                 </h1>
 
                 <div className="home-positioning">
                     <div className="home-positioning-meta">
                         <span>Focus</span>
-                        Data Eng · Stat Programming · Analytics · SWE
+                        Stat Programming · Data Systems · AI Integration · Healthcare Analytics
                         <br />
                         <span style={{ marginTop: 12, display: "block" }}>Stack</span>
-                        Python · R · SAS · AWS · Terraform
+                        Python · SQL · SAS · AWS · Terraform
                     </div>
                     <p>
-                        <em>Data engineer and statistical programmer</em> shipping production AWS
-                        — event-driven biometrics, satellite-fused land-investment scoring, and
-                        HL7&nbsp;FHIR → OMOP healthcare pipelines. Best work happens where
-                        the data is messy and the stakes are real.
+                        <em>Statistical Programmer at Parexel</em> working with regulated
+                        clinical data, validation, and analysis-ready datasets. Outside that
+                        role, I build production-grade data products — including HUMN, an
+                        AWS-backed health behavior app with event-driven scoring and secure
+                        biometric data flows.
                     </p>
                 </div>
 
@@ -135,6 +138,8 @@ const Home = ({ setExpandedProject }) => {
                     <span>Terraform</span>
                     <span className="sep">/</span>
                     <span>Docker</span>
+                    <span className="sep">/</span>
+                    <span>Clinical Data</span>
                     <span className="sep">/</span>
                     <span>OMOP · FHIR</span>
                     <span className="sep">/</span>
