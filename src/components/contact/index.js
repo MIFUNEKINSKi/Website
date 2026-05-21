@@ -20,8 +20,9 @@ const Contact = () => (
                 <span className="editorial">talk shop.</span>
             </h1>
             <p className="contact-lead">
-                Looking for data engineering, data analytics, or software engineering roles.
-                Email is the fastest way to reach me — I reply within a day.
+                Open to healthcare data systems, analytics engineering, AI integration,
+                and data platform roles. Email is the fastest way to reach me — I reply
+                within a day.
             </p>
         </div>
 
@@ -79,7 +80,7 @@ const Contact = () => (
         </div>
 
         <div className="contact-footer">
-            <span>Currently available</span>
+            <span>Open to the right role</span>
             <span>Last updated · May 2026</span>
         </div>
     </div>

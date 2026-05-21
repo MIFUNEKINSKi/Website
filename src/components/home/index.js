@@ -39,6 +39,10 @@ const Home = ({ setExpandedProject }) => {
                     <span className="lf">for regulated, real-world work.</span>
                 </h1>
 
+                <div className="home-current">
+                    Current: Parexel · Statistical Programmer · clinical data / validation / analytics
+                </div>
+
                 <div className="home-positioning">
                     <div className="home-positioning-meta">
                         <span>Focus</span>

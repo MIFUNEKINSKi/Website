@@ -281,11 +281,24 @@ p.lead {
 }
 .home-hero-name .lf { display: block; }
 
+.home-current {
+  width: fit-content;
+  max-width: 100%;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: var(--s-3) 0;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
 .home-positioning {
   display: grid;
   grid-template-columns: 200px 1fr;
   gap: var(--s-6);
-  margin-top: var(--s-6);
+  margin-top: var(--s-5);
   padding-top: var(--s-5);
   border-top: 1px solid var(--rule);
 }

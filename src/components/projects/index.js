@@ -2,6 +2,8 @@ import React from 'react';
 import { PROJECTS } from "../../data/portfolio";
 import Icon from "../icon";
 
+const PROJECT_ORDER = ["humn", "vitalstream", "cloudclearing", "codemark", "auteurflix"];
+
 const PageSlug = ({ index, name }) => (
     <div className="page-slug">
         <span className="index">{index}</span>
@@ -26,7 +28,7 @@ const CodeBlock = ({ filename, code }) => (
     </div>
 );
 
-const ProjectRow = ({ p, total, isExpanded, onToggle }) => (
+const ProjectRow = ({ p, index, total, isExpanded, onToggle }) => (
     <article className={`project-row ${isExpanded ? "expanded" : ""}`}>
         <div
             className="project-row-header"
@@ -42,7 +44,7 @@ const ProjectRow = ({ p, total, isExpanded, onToggle }) => (
             }}
         >
             <div className="project-row-num" style={{ "--accent-color": p.accent }}>
-                {p.num} / {String(total).padStart(2, "0")}
+                {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
             </div>
             <div className="project-row-name">
                 <h2>{p.name}</h2>
@@ -121,6 +123,10 @@ const ProjectRow = ({ p, total, isExpanded, onToggle }) => (
 );
 
 const Projects = ({ expandedProject, setExpandedProject }) => {
+    const orderedProjects = PROJECT_ORDER.map((id) =>
+        PROJECTS.find((project) => project.id === id)
+    ).filter(Boolean);
+
     return (
         <div className="projects">
             <PageSlug index="03" name="Projects" />
@@ -128,17 +134,19 @@ const Projects = ({ expandedProject, setExpandedProject }) => {
                 Selected <em>work</em>.
             </h1>
             <p className="projects-intro">
-                Five production-shape systems — satellite fusion, event-driven AWS, clinical
-                data standards, and full-stack web. Click a row for architecture, code, and
-                technical notes. Source links sit at the bottom of each.
+                Five production-shape systems — behavior-change health infrastructure,
+                clinical data standards, satellite fusion, and full-stack web. Click a row
+                for architecture, code, and technical notes. Source links sit at the bottom
+                of each.
             </p>
 
             <div className="projects-list">
-                {PROJECTS.map((p) => (
+                {orderedProjects.map((p, index) => (
                     <ProjectRow
                         key={p.id}
                         p={p}
-                        total={PROJECTS.length}
+                        index={index}
+                        total={orderedProjects.length}
                         isExpanded={expandedProject === p.id}
                         onToggle={() =>
                             setExpandedProject(expandedProject === p.id ? null : p.id)
