@@ -7,5 +7,5 @@ www.chris-moore.info
 
 **[LinkedIn](https://www.linkedin.com/in/chris-moore-27438989/)**
 
-moorecash@gmail.com
+moorexchristopher@gmail.com
 

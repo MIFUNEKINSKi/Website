@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "website",
-      "runtimeExecutable": "/Users/chrismoore/.nvm/versions/node/v20.2.0/bin/npx",
-      "runtimeArgs": ["react-scripts", "start"],
+      "runtimeExecutable": "C:\\Program Files\\nodejs\\node.exe",
+      "runtimeArgs": ["node_modules/react-scripts/bin/react-scripts.js", "start"],
       "port": 3000
     }
   ]
