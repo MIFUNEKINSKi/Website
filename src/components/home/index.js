@@ -29,12 +29,12 @@ const Home = ({ setExpandedProject }) => {
 
             <header className="home-hero">
                 <h1 className="home-hero-name">
-                    <span className="lf">Christopher</span>
+                    <span className="lf">Christopher </span>
                     <span className="lf">
-                        Moore <span className="editorial">— builds</span>
+                        Moore <span className="editorial">— builds </span>
                     </span>
                     <span className="lf">
-                        <span className="editorial">trusted data systems</span>
+                        <span className="editorial">trusted data systems </span>
                     </span>
                     <span className="lf">for regulated, real-world work.</span>
                 </h1>

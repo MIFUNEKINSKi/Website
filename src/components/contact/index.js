@@ -15,7 +15,7 @@ const Contact = () => (
 
         <div className="contact-hero">
             <h1>
-                Let's
+                Let's{" "}
                 <br />
                 <span className="editorial">talk shop.</span>
             </h1>

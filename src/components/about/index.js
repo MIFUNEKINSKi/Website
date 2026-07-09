@@ -14,7 +14,7 @@ const About = () => (
     <div className="about">
         <PageSlug index="02" name="About" />
         <h1 className="about-h1">
-            I work where <em>statistical programming</em>
+            I work where <em>statistical programming</em>{" "}
             <br />
             meets production data systems.
         </h1>
