@@ -1,6 +1,7 @@
 import React from 'react';
 import { PROJECTS } from "../../data/portfolio";
 import Icon from "../icon";
+import { trackEvent } from "../../analytics";
 
 const PROJECT_ORDER = ["humn", "vitalstream", "cloudclearing", "codemark", "auteurflix"];
 
@@ -108,11 +109,23 @@ const ProjectRow = ({ p, index, total, isExpanded, onToggle }) => (
                     </div>
                 </div>
                 <div className="card-links">
-                    <a className="link-btn primary" href={p.githubLink} target="_blank" rel="noreferrer">
+                    <a
+                        className="link-btn primary"
+                        href={p.githubLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={() => trackEvent("outbound_click", { link: "github_source", project: p.id })}
+                    >
                         <Icon name="github" size={13} /> Source
                     </a>
                     {p.liveLink && (
-                        <a className="link-btn" href={p.liveLink} target="_blank" rel="noreferrer">
+                        <a
+                            className="link-btn"
+                            href={p.liveLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={() => trackEvent("outbound_click", { link: "live_demo", project: p.id })}
+                        >
                             <Icon name="external" size={13} /> Live Demo
                         </a>
                     )}
@@ -148,9 +161,13 @@ const Projects = ({ expandedProject, setExpandedProject }) => {
                         index={index}
                         total={orderedProjects.length}
                         isExpanded={expandedProject === p.id}
-                        onToggle={() =>
-                            setExpandedProject(expandedProject === p.id ? null : p.id)
-                        }
+                        onToggle={() => {
+                            const expanding = expandedProject !== p.id;
+                            if (expanding) {
+                                trackEvent("project_expand", { project: p.id });
+                            }
+                            setExpandedProject(expanding ? p.id : null);
+                        }}
                     />
                 ))}
             </div>

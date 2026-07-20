@@ -6,11 +6,16 @@ import Home from '../home';
 import About from '../about';
 import Projects from "../projects";
 import Contact from "../contact";
+import { trackPageView } from "../../analytics";
 
 const Layout = () => {
     const [expandedProject, setExpandedProject] = useState(null);
     const location = useLocation();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        trackPageView(location.pathname);
+    }, [location.pathname]);
 
     // Keyboard navigation: 1–4 jump between pages
     useEffect(() => {

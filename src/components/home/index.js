@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { PROJECTS } from "../../data/portfolio";
 import Icon from "../icon";
+import { trackEvent } from "../../analytics";
 
 const PageSlug = ({ index, name }) => (
     <div className="page-slug">
@@ -19,8 +20,14 @@ const Home = ({ setExpandedProject }) => {
     ).filter(Boolean);
 
     const openProject = (id) => {
+        trackEvent("project_open", { project: id, source: "featured_card" });
         setExpandedProject(id);
         navigate("/projects");
+    };
+
+    const ctaClick = (cta, path) => {
+        trackEvent("cta_click", { cta });
+        navigate(path);
     };
 
     return (
@@ -61,10 +68,10 @@ const Home = ({ setExpandedProject }) => {
                 </div>
 
                 <div className="home-cta-row">
-                    <button className="cta" onClick={() => navigate("/projects")}>
+                    <button className="cta" onClick={() => ctaClick("see_work", "/projects")}>
                         See selected work <Icon name="arrowR" size={14} />
                     </button>
-                    <button className="cta ghost" onClick={() => navigate("/contact")}>
+                    <button className="cta ghost" onClick={() => ctaClick("get_in_touch", "/contact")}>
                         Get in touch
                     </button>
                 </div>
@@ -75,11 +82,11 @@ const Home = ({ setExpandedProject }) => {
                     <h2>Featured work</h2>
                     <span
                         className="see-all"
-                        onClick={() => navigate("/projects")}
+                        onClick={() => ctaClick("see_all_projects", "/projects")}
                         role="button"
                         tabIndex={0}
                         onKeyDown={(e) => {
-                            if (e.key === "Enter") navigate("/projects");
+                            if (e.key === "Enter") ctaClick("see_all_projects", "/projects");
                         }}
                     >
                         See all {PROJECTS.length} projects →

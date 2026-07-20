@@ -1,4 +1,5 @@
 import React from 'react';
+import { trackEvent } from "../../analytics";
 
 const PageSlug = ({ index, name }) => (
     <div className="page-slug">
@@ -27,7 +28,11 @@ const Contact = () => (
         </div>
 
         <div className="contact-grid">
-            <a className="contact-channel" href="mailto:moorexchristopher@gmail.com">
+            <a
+                className="contact-channel"
+                href="mailto:moorexchristopher@gmail.com"
+                onClick={() => trackEvent("contact_click", { channel: "email" })}
+            >
                 <span className="contact-channel-label">01 · Email — fastest</span>
                 <span className="contact-channel-value">
                     moorexchristopher
@@ -41,6 +46,7 @@ const Contact = () => (
                 href="https://www.linkedin.com/in/chris-moore-27438989/"
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => trackEvent("contact_click", { channel: "linkedin" })}
             >
                 <span className="contact-channel-label">02 · LinkedIn</span>
                 <span className="contact-channel-value">
@@ -55,6 +61,7 @@ const Contact = () => (
                 href="https://github.com/MIFUNEKINSKi/"
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => trackEvent("contact_click", { channel: "github" })}
             >
                 <span className="contact-channel-label">03 · GitHub</span>
                 <span className="contact-channel-value">

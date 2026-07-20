@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from "react-router-dom";
 import Icon from "../icon";
+import { trackEvent } from "../../analytics";
 
 const NAV = [
     { to: "/",         label: "Index",    num: "01", end: true },
@@ -47,6 +48,7 @@ const Sidebar = () => (
                     aria-label="GitHub"
                     target="_blank"
                     rel="noreferrer"
+                    onClick={() => trackEvent("social_click", { network: "github", location: "sidebar" })}
                 >
                     <Icon name="github" size={16} />
                 </a>
@@ -55,10 +57,15 @@ const Sidebar = () => (
                     aria-label="LinkedIn"
                     target="_blank"
                     rel="noreferrer"
+                    onClick={() => trackEvent("social_click", { network: "linkedin", location: "sidebar" })}
                 >
                     <Icon name="linkedin" size={16} />
                 </a>
-                <a href="mailto:moorexchristopher@gmail.com" aria-label="Email">
+                <a
+                    href="mailto:moorexchristopher@gmail.com"
+                    aria-label="Email"
+                    onClick={() => trackEvent("social_click", { network: "email", location: "sidebar" })}
+                >
                     <Icon name="mail" size={16} />
                 </a>
             </div>
