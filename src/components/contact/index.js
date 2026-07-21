@@ -70,7 +70,7 @@ const Contact = () => (
                     /MIFUNEKINSKi
                 </span>
                 <span className="contact-channel-meta">
-                    Source for everything on the previous page
+                    Source for the open projects on the previous page
                 </span>
             </a>
             <div className="contact-channel" style={{ cursor: "default" }}>

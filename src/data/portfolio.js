@@ -124,7 +124,8 @@ for sub in _users_with_recent_events():
         Payload=json.dumps({"sub": sub}),
     )`,
         deepDive: "HUMN is the clearest expression of the direction I am pushing toward: healthcare-adjacent product engineering backed by reliable data systems. The backend uses schema-validated ingest at the edge, asynchronous Lambda fan-out so the writer never waits on scoring, DynamoDB Streams driving a cold-archive exporter to S3, and a sparse GSI that swapped a table-Scan for an active-users-only Query before user count made the Scan unaffordable. Production-readiness work includes Cognito/JWT access control, least-privilege IAM, per-user fan-out from cron to bypass Lambda's 15-min ceiling, AWS Budget + CloudWatch error-metric alarms wired to SNS, and a k6 load-test harness with run-over-run CSV deltas.",
-        githubLink: "https://github.com/MIFUNEKINSKi/HUMN",
+        appStoreLink: "https://apps.apple.com/us/app/humn-ancestral-reset/id6763772001",
+        privateNote: "Source private (App Store product) — walkthrough on request",
     },
     {
         id: "vitalstream",

@@ -109,15 +109,40 @@ const ProjectRow = ({ p, index, total, isExpanded, onToggle }) => (
                     </div>
                 </div>
                 <div className="card-links">
-                    <a
-                        className="link-btn primary"
-                        href={p.githubLink}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={() => trackEvent("outbound_click", { link: "github_source", project: p.id })}
-                    >
-                        <Icon name="github" size={13} /> Source
-                    </a>
+                    {p.appStoreLink && (
+                        <a
+                            className="link-btn primary"
+                            href={p.appStoreLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={() => trackEvent("outbound_click", { link: "app_store", project: p.id })}
+                        >
+                            <Icon name="external" size={13} /> App Store
+                        </a>
+                    )}
+                    {p.githubLink && (
+                        <a
+                            className="link-btn primary"
+                            href={p.githubLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={() => trackEvent("outbound_click", { link: "github_source", project: p.id })}
+                        >
+                            <Icon name="github" size={13} /> Source
+                        </a>
+                    )}
+                    {p.privateNote && (
+                        <span
+                            style={{
+                                alignSelf: "center",
+                                color: "var(--ink-3)",
+                                fontSize: 11,
+                                letterSpacing: "0.04em",
+                            }}
+                        >
+                            {p.privateNote}
+                        </span>
+                    )}
                     {p.liveLink && (
                         <a
                             className="link-btn"
