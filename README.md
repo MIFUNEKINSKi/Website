@@ -3,7 +3,7 @@ This site represents my personal portfolio and was built using React, Javascript
 
 ### Contact Info
 
-www.chris-moore.info
+https://chris-moore-portfolio.vercel.app
 
 **[LinkedIn](https://www.linkedin.com/in/chris-moore-27438989/)**
 
